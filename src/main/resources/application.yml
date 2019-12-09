@@ -1,0 +1,19 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+mybatis:
+  type-aliases-package: javaweb.forum.entity #实体类对应的包名
+  mapper-locations: classpath:mapper/*Mapper.xml #用于扫描 mybatis的 xml文件
+
+# 数据库连接配置，一定要在冒号后面加一个空格，否则无效
+spring:
+  datasource:
+    driver-class-name: 
+    url:
+    username: 
+    password: 
+#  thymeleaf:
+#    prefix: classpath:/t emplates/    
+    
