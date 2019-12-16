@@ -1,13 +1,11 @@
 package javaweb.forum.service;
 
-import javaweb.forum.dao.UserDao;
+import javaweb.forum.dao.CommentDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserService {
+public class CommentService {
     @Autowired
-    private UserDao dao;
-    
- 
+    private CommentDao dao;
 }

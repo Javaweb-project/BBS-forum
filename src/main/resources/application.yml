@@ -7,10 +7,10 @@ server:
 # 数据库连接配置，一定要在冒号后面加一个空格，否则无效
 spring:
   datasource:
-    driver-class-name: 
-    url:
-    username: 
-    password: 
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+    url: jdbc:mysql://47.100.52.183:3306/BBS?serverTimezone=UTC&characterEncoding=UTF-8
 #  thymeleaf:
-#    prefix: classpath:/t emplates/    
+#    prefix: classpath:/templates/
     
