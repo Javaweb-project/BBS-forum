@@ -17,4 +17,7 @@ public interface PostDao extends JpaRepository<Post,String> {
 
     @Query(value = "select * from post where post_highlight = 1 order by post_time desc",nativeQuery = true)
     List<Post> findAllPostHighLightOrOrderByPostTimeDesc();
+
+    @Query(value = "select * from post order by post_view desc ",nativeQuery = true)
+    List<Post> findAllOrderByPostViewDesc();
 }

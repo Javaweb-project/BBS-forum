@@ -23,5 +23,8 @@ public class PostService {
     * 查询所有精华帖子通过帖子发布时间降序
     * */
     public List<Post> findAllPostHighLightOrOrderByPostTimeDesc(){return dao.findAllPostHighLightOrOrderByPostTimeDesc();}
-
+    /*
+    * 查询所有帖子 按照浏览量高低返回
+    * */
+    public List<Post> findAllOrderByPostViewDesc(){return dao.findAllOrderByPostViewDesc();}
 }

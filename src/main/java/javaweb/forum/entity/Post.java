@@ -30,6 +30,17 @@ public class Post {
     @Column(name = "post_time")
     private String postTime;
 
+    @Column(name = "post_view")
+    private int postView;
+
+    public int getPostView() {
+        return postView;
+    }
+
+    public void setPostView(int postView) {
+        this.postView = postView;
+    }
+
     public String getPostId() {
         return postId;
     }
