@@ -65,3 +65,31 @@ a{
 .grayout{
     opacity: .7;
 }
+
+.newchapter-badge {
+    color: #ce8383;
+    background-color: #dee0ec;
+}
+
+
+.badge{
+    display: inline-block;
+    min-width: 10px;
+    padding: 3px 7px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+    vertical-align: middle;
+    white-space: nowrap;
+    text-align: center;
+    background-color: #777;
+    border-radius: 10px;
+}
+
+.badge-tag {
+    padding: 3px 6px;
+    border-radius: 8px;
+    margin: -4px 0 0 -1px;
+    border-width: 0;
+}

@@ -15,6 +15,9 @@ public class Post {
     @Column(name = "user_id")
     private String userId;
 
+    @Column(name = "post_title")
+    private String postTitle;
+
     @Column(name = "post_content")
     private String postContent;
 
@@ -57,6 +60,14 @@ public class Post {
         this.userId = userId;
     }
 
+    public String getPostTitle() {
+        return postTitle;
+    }
+
+    public void setPostTitle(String postTitle) {
+        this.postTitle = postTitle;
+    }
+    
     public String getPostContent() {
         return postContent;
     }

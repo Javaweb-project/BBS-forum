@@ -51,31 +51,51 @@
                     </h3>
                     <ul class="nav nav-tabs">
                         <li role="presentation" class="active">
+                            <a href="/post/postsByTime">最新</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#">最热</a>
+                        </li>
+                        <li role="presentation">
                             <a href="#">精华帖</a>
                         </li>
                         <li role="presentation">
                             <a href="#">需求贴</a>
                         </li>
-                        <li role="presentation">
-                            <a href="#">最新发布</a>
-                        </li>
                     </ul>
                 </div>
-                <!-- 帖子展示部分 -->
-                <div class="panel-body">
+                <!--置顶部分，不展示简要内容-->
+                <div class="panel-body" th:each="top:${topPosts}">
                     <article>
                         <div class="row">
                             <div class="col-xs-12 h5">
                                 <a href="#" class="bigger-5">帖子标题</a>
-                                <span class="jinghua-label" title="精华">
-                                        <span class="glyphicon glyphicon-thumbs-up jinghua-icon"></span>
-                                    </span>
+                                <span class="newchapter-badge badge-tag">置顶</span>
+                                <span class="jinghua-label" title="精华" th:if="${top.getPostHighLight()}">
+                                    <span class="glyphicon glyphicon-thumbs-up jinghua-icon"></span>
+                                </span>
+                                <span class="pull-right smaller-5">
+                                    <a href="#">发帖人</a>
+                                </span>
+                            </div>
+                        </div>
+                    </article>
+                </div>    
+                <!-- 非置顶部分 -->
+                <div class="panel-body" th:each="post:${posts}">
+                    <article>
+                        <div class="row">
+                            <div class="col-xs-12 h5">
+                                <a href="#" class="bigger-5">帖子标题</a>
+                                <span class="jinghua-label" title="精华" th:if="${post.getPostHighLight()}">
+                                    <span class="glyphicon glyphicon-thumbs-up jinghua-icon"></span>
+                                </span>
                                 <span class="pull-right smaller-5">
                                         <a href="#">发帖人</a>
-                                    </span>
+                                </span>
                             </div>
                             <div class="col-xs-12 h5">
-                                <span class="smaller-5"></span>
+                                <span class="smaller-5" th:text="'用户名：'+${post.getPostContent()}"></span>
                                 <span class="pull-right smaller-30">
                                         <em>
                                             <span class="glyphicon glyphicon-eye-open"></span>
