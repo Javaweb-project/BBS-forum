@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>技术宅论坛</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/systemCSS.css}" rel="stylesheet"/>
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid top">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">技术宅</span>
+                </button>
+                <a class="navbar-brand" href="#">技术宅社区</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <form class="navbar-form navbar-left">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="搜索话题">
+                    </div>
+                    <button type="submit" class="btn btn-default">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">登录</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> 用户名</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">个人中心</a></li>
+                            <li><a href="#">消息中心</a></li>
+                            <li><a href="#">切换账户</a></li>
+                            <li><a href="#">退出</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+    <div class="container-fluid main">
+        <div class="col-sm-10 col-sm-offset-1 col-md-9">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3>
+                        <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+                        发现
+                    </h3>
+                    <ul class="nav nav-tabs">
+                        <li role="presentation" class="active">
+                            <a href="#">精华帖</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#">需求贴</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#">最新发布</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- 帖子展示部分 -->
+                <div class="panel-body">
+                    <article>
+                        <div class="row">
+                            <div class="col-xs-12 h5">
+                                <a href="#" class="bigger-5">帖子标题</a>
+                                <span class="jinghua-label" title="精华">
+                                        <span class="glyphicon glyphicon-thumbs-up jinghua-icon"></span>
+                                    </span>
+                                <span class="pull-right smaller-5">
+                                        <a href="#">发帖人</a>
+                                    </span>
+                            </div>
+                            <div class="col-xs-12 h5">
+                                <span class="smaller-5"></span>
+                                <span class="pull-right smaller-30">
+                                        <em>
+                                            <span class="glyphicon glyphicon-eye-open"></span>
+                                            浏览人数&nbsp
+                                            <span class="glyphicon glyphicon-comment"></span>
+                                            评论数
+                                        </em>
+                                    </span>
+                            </div>
+                            <div class="col-xs-12 h5 grayout brief-0">
+                                <span class="pull-right smaller-30">发布时间</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+<script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/systemJS.js}"></script>
+</body>
+</html>
+<!--th:each="user:${users}"-->
+<!--th:text="'用户名：'+${user.name}"-->

@@ -1,0 +1,67 @@
+body{
+    font-size: 18px;
+}
+
+.top{
+    padding-right: 60px;
+    padding-left: 60px;
+}
+
+.main{
+    padding-left: 100px;
+}
+
+.panel-default{
+    background-color: #f5f5f5;
+}
+
+.panel{
+    padding: 5px;
+    margin-bottom: 5px;
+    border-color: #c4c4c4;
+}
+
+a{
+    text-decoration: none;
+    font-weight: 700;
+    color: #505050;
+}
+
+.bigger-5{
+    font-size: 125%;
+}
+
+.jinghua-label{
+    position: relative;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.jinghua-icon{
+    color: #ba234e;
+    font-size: 1.4em;
+    left: .2em;
+    top: -0.2em;
+    position: absolute;
+}
+
+.smaller-5{
+    font-size: 115%;
+}
+
+.smaller-30.pull-right{
+    margin-top: 6px;
+}
+
+.smaller-30{
+    font-size: 90%;
+}
+
+.brief-0{
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.grayout{
+    opacity: .7;
+}
