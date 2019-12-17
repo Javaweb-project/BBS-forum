@@ -22,6 +22,7 @@ public class PostService {
 
     /**
      * 从传入的 posts列表中挑选出所有的置顶帖
+     * @param posts
      * @return
      */
     public List<Post> selectTop(List<Post> posts) {
@@ -63,5 +64,43 @@ public class PostService {
      */
     public List<Post> findByTitleLike(String title) {
         return dao.findByTitleLike(title);
+    }
+
+    /**
+     * 根据帖子 id返回帖子信息
+     * @param post_id
+     * @return
+     */
+    public Post findByPostId(String post_id) {
+        return dao.findByPostId(post_id);
+    }
+    
+    /**
+     * 更新帖子的加精状态
+     * @param post_id
+     * @param high
+     * @return
+     */
+    public int updateHighLight(String post_id,int high) {
+        return dao.updateHighLight(post_id,high);
+    }
+
+    /**
+     * 更新帖子的置顶状态
+     * @param post_id
+     * @param top
+     * @return
+     */
+    public int updateTop(String post_id,int top) {
+        return dao.updateTop(post_id,top);
+    }
+
+    /**
+     * 根据帖子 id删除帖子
+     * @param post_id
+     * @return
+     */
+    public int deleteByPostId(String post_id) {
+        return dao.deleteByPostId(post_id);
     }
 }

@@ -16,10 +16,12 @@ class ForumApplicationTests {
     
     @Test
     void contextLoads() {
-        List<Post> posts = postService.findByTitleLike("标题1");
-        posts.forEach(p->{
-            System.out.println("帖子的id："+p.getPostId());
-        });
+//        List<Post> posts = postService.findByTitleLike("标题1");
+//        posts.forEach(p->{
+//            System.out.println("帖子的id："+p.getPostId());
+//        });
+        int res = postService.updateHighLight("003",0);
+        System.out.println(res);
     }
 
 }

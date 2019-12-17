@@ -7,10 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
-@RequestMapping("/post")
 public class PostController {
     @Autowired
     PostService postService;
@@ -88,5 +89,44 @@ public class PostController {
         List<Post> posts = postService.findByTitleLike(title);
         model.addAttribute("posts",posts);
         return "system";
+    }
+
+    /**
+     * 改变帖子加精状态
+     * @param request
+     * @return
+     */
+    @RequestMapping("updateHigh")
+    public String updateHigh() {
+//        String post_id = request.getParameter("post_id");
+//        Post post = postService.findByPostId(post_id);
+//        Map<String,String> map = new HashMap<>();
+//        int res;
+//        if(post.getPostHighLight() == 0)
+//            res = postService.updateHighLight(post_id,1);
+//        else
+//            res = postService.updateHighLight(post_id,0);
+//        if(res == 1)
+//            map.put("res","修改成功");
+//        else
+//            map.put("res","修改失败");
+//        return map;
+        return "system";
+    }
+
+    /**
+     * 改变帖子置顶状态
+     * @param request
+     * @return
+     */
+    @RequestMapping("updateTop")
+    public String updateTop(HttpServletRequest request) {
+        String post_id = request.getParameter("post_id");
+        Post post = postService.findByPostId(post_id);
+        if(post.getPostTop() == 0)
+            postService.updateTop(post_id,1);
+        else
+            postService.updateTop(post_id,0);
+        return "redirect:/postsByTime";
     }
 }

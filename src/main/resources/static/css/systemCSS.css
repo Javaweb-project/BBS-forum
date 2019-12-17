@@ -2,7 +2,7 @@ body{
     font-size: 18px;
 }
 
-.top{
+.head{
     padding-right: 60px;
     padding-left: 60px;
 }
@@ -86,13 +86,10 @@ a{
 .top-tag{
     color: #ce8383;
     background-color: #dee0ec;
-    /*margin: -4px 0 0 -1px;*/
-    /*vertical-align: middle;*/
-    /*white-space: nowrap;*/
 }
 
 .demand-tag{
-    color: #505050; 
+    color: #7AB4C0; 
     background-color: #DEE0EC;
 }
 
