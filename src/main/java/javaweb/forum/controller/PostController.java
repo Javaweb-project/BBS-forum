@@ -77,4 +77,12 @@ public class PostController {
         model.addAttribute("topPosts",topPosts);
         return "system";
     }
+
+    /**
+     * 发布帖子
+     */
+    @RequestMapping("post")
+    public String post(Model model) {
+        return "post";
+    }
 }
