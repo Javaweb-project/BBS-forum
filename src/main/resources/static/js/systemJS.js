@@ -30,16 +30,6 @@ $("#query").click(function() {
     }
 })
 
-// function high(val) {
-//     var par = this.parents('article');
-//     var post_id = par.id;
-//     $.ajax({
-//         type: 'post/updateHigh',
-//         url: '',
-//         data: {post_id: post_id},
-//     })
-// }
-
 /* 管理员按钮点击功能 */
 function btnThing() {
     var btn_high = $(".high");
@@ -47,12 +37,15 @@ function btnThing() {
     /* 加精按钮功能 */
     for(var i in btn_high) {
         btn_high.eq(i).click(function() {
-            var par = $(this).eq(i).parents('article');
-            var post_id = par.id;
+            var par = $(this).parents("article");
+            var post_id = par.eq(0).attr("id");
             $.ajax({
                 type: 'post',
                 url: 'updateHigh',
                 data: {post_id: post_id},
+                success: function(data) {
+                    alert(data.res);
+                }
             })
         })
     }
@@ -61,11 +54,16 @@ function btnThing() {
     for(var i in btn_top) {
         btn_top.eq(i).click(function() {
             var par = $(this).parents('article');
-            var post_id = par.id;
+            var post_id = par.eq(0).attr("id");
+            alert(post_id);
             $.ajax({
                 type: 'post',
                 url: 'updateTop',
                 data: {post_id: post_id},
+                dataType: 'json',
+                success: function(data) {
+                    alert(data.res);
+                }
             })
         })
     }

@@ -129,6 +129,6 @@ public class PostController {
             postService.updateTop(post_id,1);
         else
             postService.updateTop(post_id,0);
-        return "redirect:/postsByTime";
+        return "system";
     }
 }
