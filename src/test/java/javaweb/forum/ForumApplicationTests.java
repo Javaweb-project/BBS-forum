@@ -16,7 +16,7 @@ class ForumApplicationTests {
     
     @Test
     void contextLoads() {
-        List<Post> posts = postService.findAllOrderByPostTimeDesc();
+        List<Post> posts = postService.findByTitleLike("标题1");
         posts.forEach(p->{
             System.out.println("帖子的id："+p.getPostId());
         });

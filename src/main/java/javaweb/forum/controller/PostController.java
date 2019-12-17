@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -75,6 +76,17 @@ public class PostController {
         posts.removeAll(topPosts);
         model.addAttribute("posts",posts);
         model.addAttribute("topPosts",topPosts);
+        return "system";
+    }
+
+    /**
+     * 按照帖子标题进行模糊查询
+     */
+    @RequestMapping("query")
+    public String findByTitleLike(Model model, HttpServletRequest request) {
+        String title = request.getParameter("title");
+        List<Post> posts = postService.findByTitleLike(title);
+        model.addAttribute("posts",posts);
         return "system";
     }
 }

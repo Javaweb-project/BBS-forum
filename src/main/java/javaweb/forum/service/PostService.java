@@ -4,7 +4,6 @@ import javaweb.forum.dao.PostDao;
 import javaweb.forum.entity.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,5 +54,14 @@ public class PostService {
      */
     public List<Post> findAllDemandOrderByPostTimeDesc() {
         return dao.findAllDemandOrderByPostTimeDesc();
+    }
+
+    /**
+     * 按照帖子标题进行模糊查询
+     * @param title
+     * @return
+     */
+    public List<Post> findByTitleLike(String title) {
+        return dao.findByTitleLike(title);
     }
 }
