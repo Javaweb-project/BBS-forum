@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
@@ -97,21 +99,21 @@ public class PostController {
      * @return
      */
     @RequestMapping("updateHigh")
-    public String updateHigh() {
-//        String post_id = request.getParameter("post_id");
-//        Post post = postService.findByPostId(post_id);
-//        Map<String,String> map = new HashMap<>();
-//        int res;
-//        if(post.getPostHighLight() == 0)
-//            res = postService.updateHighLight(post_id,1);
-//        else
-//            res = postService.updateHighLight(post_id,0);
-//        if(res == 1)
-//            map.put("res","修改成功");
-//        else
-//            map.put("res","修改失败");
-//        return map;
-        return "system";
+    @ResponseBody
+    public Map<String,String> updateHigh(HttpServletRequest request) {
+        String post_id = request.getParameter("post_id");
+        Post post = postService.findByPostId(post_id);
+        Map<String,String> map = new HashMap<>();
+        int res;
+        if(post.getPostHighLight() == 0)
+            res =   postService.updateHighLight(post_id,1);
+        else
+            res = postService.updateHighLight(post_id,0);
+        if(res == 1)
+            map.put("res","修改加精成功");
+        else
+            map.put("res","修改加精失败");
+        return map;
     }
 
     /**
