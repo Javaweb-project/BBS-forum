@@ -79,6 +79,7 @@
                                         <input th:case="0" type="button" class="btn btn-sm btn-info high" value="加精"/>
                                         <input th:case="1" type="button" class="btn btn-sm btn-info high" value="取消加精"/>
                                         <input type="button" class="btn btn-sm btn-success top" value="取消置顶"/>
+                                        <input type="button" class="btn btn-sm btn-danger del" value="删除"/>
                                     </span>
                                 </span>
                                 <span class="pull-right smaller-5">
@@ -100,11 +101,12 @@
                                     <span class="glyphicon glyphicon-thumbs-up jinghua-icon"></span>
                                 </span>
                                 <span th:if="${session.user!=null}">
-                                    <span th:switch="${post.getPostHighLight()}">
+                                    <span th:switch="${post.getPostHighLight()}" th:if="${session.user.userAdmin==1}">
                                         <input th:case="0" type="button" class="btn btn-sm btn-info high" value="加精"/> 
                                         <input th:case="1" type="button" class="btn btn-sm btn-info high" value="取消加精"/>
+                                        <input type="button" class="btn btn-sm btn-success top" value="置顶"/>
+                                        <input type="button" class="btn btn-sm btn-danger del" value="删除"/>
                                     </span>
-                                    <input type="button" class="btn btn-sm btn-success top" value="置顶"/>
                                 </span>
                                 <span class="pull-right smaller-5">
                                     <a href="#">发帖人</a>

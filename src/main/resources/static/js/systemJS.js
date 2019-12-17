@@ -7,7 +7,7 @@ function changeTab() {
     var page = str[str.length-1];
     $(".active").removeClass("active");
     switch(page) {
-        case "system":
+        case "system": window.location.href="/postsByTime";
         case "postsByTime": $("#new").addClass("active"); break;
         case "postsByView": $("#hot").addClass("active"); break;
         case "highLightPosts": $("#highlight").addClass("active"); break;    
@@ -22,7 +22,6 @@ $("#query").click(function() {
             type: 'post',
             url: '/query',
             data: {title: title.trim()},
-            cache: false,
             success: function(data) {
                 alert("成功查询");
             }
@@ -34,6 +33,7 @@ $("#query").click(function() {
 function btnThing() {
     var btn_high = $(".high");
     var btn_top = $(".top");
+    var btn_del = $(".del");
     /* 加精按钮功能 */
     for(var i in btn_high) {
         btn_high.eq(i).click(function() {
@@ -45,6 +45,7 @@ function btnThing() {
                 data: {post_id: post_id},
                 success: function(data) {
                     alert(data.res);
+                    window.location.href="/postsByTime";
                 }
             })
         })
@@ -63,8 +64,28 @@ function btnThing() {
                 dataType: 'json',
                 success: function(data) {
                     alert(data.res);
+                    window.location.href="/postsByTime";
                 }
             })
+        })
+    }
+
+    /* 删除按钮功能 */
+    for(var i in btn_del) {
+        btn_del.eq(i).click(function() {
+            var par = $(this).parents('article');
+            var post_id = par.eq(0).attr("id");
+            alert(post_id);
+            $.ajax({
+                type: 'post',
+                url: 'delPost',
+                data: {post_id: post_id},
+                dataType: 'json',
+                success: function(data) {
+                    alert(data.res);
+                    window.location.href="/postsByTime";
+                }
+            })    
         })
     }
 }

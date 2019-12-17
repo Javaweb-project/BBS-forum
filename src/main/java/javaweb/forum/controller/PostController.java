@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
@@ -106,7 +105,7 @@ public class PostController {
         Map<String,String> map = new HashMap<>();
         int res;
         if(post.getPostHighLight() == 0)
-            res =   postService.updateHighLight(post_id,1);
+            res = postService.updateHighLight(post_id,1);
         else
             res = postService.updateHighLight(post_id,0);
         if(res == 1)
@@ -122,13 +121,35 @@ public class PostController {
      * @return
      */
     @RequestMapping("updateTop")
-    public String updateTop(HttpServletRequest request) {
+    @ResponseBody
+    public Map<String,String> updateTop(HttpServletRequest request) {
         String post_id = request.getParameter("post_id");
         Post post = postService.findByPostId(post_id);
+        Map<String,String> map = new HashMap<>();
+        int res;
         if(post.getPostTop() == 0)
-            postService.updateTop(post_id,1);
+            res = postService.updateTop(post_id,1);
         else
-            postService.updateTop(post_id,0);
-        return "system";
+            res = postService.updateTop(post_id,0);
+        if(res == 1)
+            map.put("res","修改置顶成功");
+        else
+            map.put("res","修改置顶失败");
+        return map;
     }
+    
+    @RequestMapping("delPost")
+    @ResponseBody
+    public Map<String,String> delPost(HttpServletRequest request) {
+        String post_id = request.getParameter("post_id");
+        Post post = postService.findByPostId(post_id);
+        Map<String,String> map = new HashMap<>();
+        int res;
+        res = postService.deleteByPostId(post_id);
+        if(res == 1)
+            map.put("res","删除成功");
+        else
+            map.put("res","删除失败");
+        return map;
+    }    
 }
