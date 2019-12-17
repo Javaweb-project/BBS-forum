@@ -50,85 +50,20 @@
                     </h3>
                     <ul class="nav nav-tabs">
                         <li role="presentation" class="active" id="new">
-                            <a href="/postsByTime">最新</a>
+                            <a href="javascript:void(0)">最新</a>
                         </li>
                         <li role="presentation" id="hot">
-                            <a href="/postsByView">最热</a>
+                            <a href="javascript:void(0)">最热</a>
                         </li>
                         <li role="presentation" id="highlight">
-                            <a href="/highLightPosts">精华帖</a>
+                            <a href="javascript:void(0)">精华帖</a>
                         </li>
                         <li role="presentation" id="demand">
-                            <a href="/demandPosts">需求贴</a>
+                            <a href="javascript:void(0)">需求贴</a>
                         </li>
                     </ul>
                 </div>
-                <!--置顶部分，不展示简要内容-->
-                <div class="panel-body" th:if="${topPosts}">
-                    <article class="brief-2" th:each="top:${topPosts}" th:id="${top.getPostId()}">
-                        <div class="row">
-                            <div class="col-xs-12 h5">
-                                <span class="tag top-tag">置顶</span>
-                                <span class="tag demand-tag" th:if="${top.getPostPoint()}">需求帖</span>
-                                <a href="#" class="bigger-5" th:text="${top.getPostTitle()}">帖子标题</a>
-                                <span class="jinghua-label" title="精华" th:if="${top.getPostHighLight()}">
-                                    <span class="glyphicon glyphicon-thumbs-up jinghua-icon"></span>
-                                </span>
-                                <span th:if="${session.user != null}">
-                                    <span th:switch="${top.getPostHighLight()}" th:if="${session.user.userAdmin==1}">
-                                        <input th:case="0" type="button" class="btn btn-sm btn-info high" value="加精"/>
-                                        <input th:case="1" type="button" class="btn btn-sm btn-info high" value="取消加精"/>
-                                        <input type="button" class="btn btn-sm btn-success top" value="取消置顶"/>
-                                        <input type="button" class="btn btn-sm btn-danger del" value="删除"/>
-                                    </span>
-                                </span>
-                                <span class="pull-right smaller-5">
-                                    <a href="#">发帖人</a>
-                                </span>
-                            </div>
-                        </div>
-                    </article>
-                    <hr/>
-                </div>
-                <!-- 非置顶部分 -->
-                <div class="panel-body" th:if="${posts}">
-                    <article class="brief-2" th:each="post:${posts}" th:id="${post.getPostId()}">
-                        <div class="row">
-                            <div class="col-xs-12 h5">
-                                <span class="tag demand-tag" th:if="${post.getPostPoint()}">需求帖</span>
-                                <a href="#" class="bigger-5">帖子标题</a>
-                                <span class="jinghua-label" title="精华" th:if="${post.getPostHighLight()}">
-                                    <span class="glyphicon glyphicon-thumbs-up jinghua-icon"></span>
-                                </span>
-                                <span th:if="${session.user!=null}">
-                                    <span th:switch="${post.getPostHighLight()}" th:if="${session.user.userAdmin==1}">
-                                        <input th:case="0" type="button" class="btn btn-sm btn-info high" value="加精"/> 
-                                        <input th:case="1" type="button" class="btn btn-sm btn-info high" value="取消加精"/>
-                                        <input type="button" class="btn btn-sm btn-success top" value="置顶"/>
-                                        <input type="button" class="btn btn-sm btn-danger del" value="删除"/>
-                                    </span>
-                                </span>
-                                <span class="pull-right smaller-5">
-                                    <a href="#">发帖人</a>
-                                </span>
-                            </div>
-                            <div class="col-xs-12 h5">
-                                <span class="smaller-5" th:text="'用户名：'+${post.getPostContent()}"></span>
-                                <span class="pull-right smaller-30">
-                                    <em>
-                                        <span class="glyphicon glyphicon-eye-open"></span>
-                                        <!--浏览人数-->
-                                        <span style="vertical-align: inherit;" th:text="${post.getPostView()}+'&nbsp'"></span>
-                                        <span class="glyphicon glyphicon-bell"></span>
-                                        <!--发布时间-->
-                                        <span style="vertical-align: inherit;" th:text="${post.getPostTime().substring(0,post.getPostTime().length()-3)}"></span>
-                                    </em>
-                                </span>
-                            </div>
-                        </div>
-                    </article>
-                    <hr/>
-                </div>
+                <div id="list"></div>
             </div>
         </div>
     </div>
