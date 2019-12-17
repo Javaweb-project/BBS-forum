@@ -11,10 +11,10 @@ public class PageController {
 
     @RequestMapping("system")
     public String system(HttpSession session){
-        User user = new User();
-        user.setUserId("123");
-        user.setUserAdmin(1);
-        session.setAttribute("user",user);
+//        User user = new User();
+//        user.setUserId("123");
+//        user.setUserAdmin(1);
+//        session.setAttribute("user",user);
         return "system";
     }
 }

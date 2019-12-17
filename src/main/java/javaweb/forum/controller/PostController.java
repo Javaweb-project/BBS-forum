@@ -32,7 +32,7 @@ public class PostController {
         posts.removeAll(topPosts);
         model.addAttribute("posts",posts);
         model.addAttribute("topPosts",topPosts);
-        return "system";
+        return "listPosts";
     }
 
     /**
@@ -50,7 +50,7 @@ public class PostController {
         posts.removeAll(topPosts);
         model.addAttribute("posts",posts);
         model.addAttribute("topPosts",topPosts);
-        return "system";
+        return "listPosts";
     }
     
     /**
@@ -65,7 +65,7 @@ public class PostController {
         posts.removeAll(topPosts);
         model.addAttribute("posts",posts);
         model.addAttribute("topPosts",topPosts);
-        return "system";
+        return "listPosts";
     }
 
     /**
@@ -78,7 +78,7 @@ public class PostController {
         posts.removeAll(topPosts);
         model.addAttribute("posts",posts);
         model.addAttribute("topPosts",topPosts);
-        return "system";
+        return "listPosts";
     }
 
     /**
@@ -89,7 +89,7 @@ public class PostController {
         String title = request.getParameter("title");
         List<Post> posts = postService.findByTitleLike(title);
         model.addAttribute("posts",posts);
-        return "system";
+        return "listPosts";
     }
 
     /**

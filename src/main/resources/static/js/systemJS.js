@@ -35,9 +35,8 @@ $("#demand").click(function () {
 })
 
 $("#query").click(function() {
-    var title = $("#title").value;
-    console.log(title);
-    // var url = "query?title="+title;
-    // refresh(url);
+    var title = $("#title").val();
+    var url = "query?title="+title;
+    refresh(url);
 })
 
