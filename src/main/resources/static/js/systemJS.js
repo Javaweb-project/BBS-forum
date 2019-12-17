@@ -7,7 +7,7 @@ function changeTab() {
     var page = str[str.length-1];
     $(".active").removeClass("active");
     switch(page) {
-        case "system": window.location.href="/postsByTime";
+        case "system": 
         case "postsByTime": $("#new").addClass("active"); break;
         case "postsByView": $("#hot").addClass("active"); break;
         case "highLightPosts": $("#highlight").addClass("active"); break;    
@@ -17,11 +17,13 @@ function changeTab() {
 
 $("#query").click(function() {
     var title = $("#title").value;
+    console.log(title);
+    console.log($("#title"));
     if(title != "") {
         $.ajax({
             type: 'post',
             url: '/query',
-            data: {title: title.trim()},
+            data: {title: title},
             success: function(data) {
                 alert("成功查询");
             }
