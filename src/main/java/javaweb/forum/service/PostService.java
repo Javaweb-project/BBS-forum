@@ -5,13 +5,8 @@ import javaweb.forum.entity.Post;
 import javaweb.forum.pageTool.PageHelper;
 import javaweb.forum.pageTool.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -119,7 +114,7 @@ public class PostService {
      * @param page 需要的某一页的内容
      * @return
      */
-    public Model devidePage(Model model,List<Post> posts,String page) {
+    public Model dividePage(Model model,List<Post> posts,String page) {
         PageHelper pageHelper = new PageHelper();
         List<PageInfo> pageInfos = pageHelper.SetStartPage(posts,Integer.parseInt(page),1);
         model.addAttribute("posts",pageInfos.get(0).getList());

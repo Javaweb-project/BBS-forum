@@ -1,8 +1,6 @@
 package javaweb.forum.controller;
 
 import javaweb.forum.entity.Post;
-import javaweb.forum.pageTool.PageHelper;
-import javaweb.forum.pageTool.PageInfo;
 import javaweb.forum.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,7 +32,7 @@ public class PostController {
          */
         posts.removeAll(topPosts);
         if(posts.size() != 0) 
-            model = postService.devidePage(model,posts,page);
+            model = postService.dividePage(model,posts,page);
         model.addAttribute("topPosts",topPosts);
         return "listPosts";
     }
@@ -53,7 +51,7 @@ public class PostController {
          */
         posts.removeAll(topPosts);
         if(posts.size() != 0)
-            model = postService.devidePage(model,posts,page);
+            model = postService.dividePage(model,posts,page);
         model.addAttribute("topPosts",topPosts);
         return "listPosts";
     }
@@ -69,7 +67,7 @@ public class PostController {
         List<Post> topPosts = postService.selectTop(posts);
         posts.removeAll(topPosts);
         if(posts.size() != 0)
-            model = postService.devidePage(model,posts,page);
+            model = postService.dividePage(model,posts,page);
         model.addAttribute("topPosts",topPosts);
         return "listPosts";
     }
@@ -83,7 +81,7 @@ public class PostController {
         List<Post> topPosts = postService.selectTop(posts);
         posts.removeAll(topPosts);
         if(posts.size() != 0)
-            model = postService.devidePage(model,posts,page);
+            model = postService.dividePage(model,posts,page);
         model.addAttribute("topPosts",topPosts);
         return "listPosts";
     }
@@ -144,7 +142,12 @@ public class PostController {
             map.put("res","修改置顶失败");
         return map;
     }
-    
+
+    /**
+     * 根据 post_id删除帖子
+     * @param request
+     * @return
+     */
     @RequestMapping("delPost")
     @ResponseBody
     public Map<String,String> delPost(HttpServletRequest request) {
@@ -157,17 +160,6 @@ public class PostController {
             map.put("res","删除成功");
         else
             map.put("res","删除失败");
-        return map;
-    }  
-    
-    @RequestMapping("test")
-    @ResponseBody
-    public Map<String,Object> test(HttpServletRequest request, @RequestParam(name = "page",defaultValue = "1") String page) {
-        Map<String,Object> map = new HashMap<>();
-        List<Post> posts = postService.findAllOrderByPostTimeDesc();
-        PageHelper pageHelper = new PageHelper();
-        List<PageInfo> pageInfos = pageHelper.SetStartPage(posts,Integer.parseInt(page),1);
-        map.put("message",pageInfos);
         return map;
     }
 }
