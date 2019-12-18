@@ -1,7 +1,7 @@
 
 /* 设置顶部导航栏的切换效果 */
 $(".nav-tabs li").click(function() {
-    $(".active").removeClass("active");
+    $(".nav-tabs .active").removeClass("active");
     $(this).addClass("active");
 })
 

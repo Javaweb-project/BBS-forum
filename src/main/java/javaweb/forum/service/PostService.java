@@ -2,8 +2,16 @@ package javaweb.forum.service;
 
 import javaweb.forum.dao.PostDao;
 import javaweb.forum.entity.Post;
+import javaweb.forum.pageTool.PageHelper;
+import javaweb.forum.pageTool.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -103,4 +111,22 @@ public class PostService {
     public int deleteByPostId(String post_id) {
         return dao.deleteByPostId(post_id);
     }
+
+    /**
+     * 完成分页功能
+     * @param model 放在 model中返回
+     * @param posts 需要分页的列表
+     * @param page 需要的某一页的内容
+     * @return
+     */
+    public Model devidePage(Model model,List<Post> posts,String page) {
+        PageHelper pageHelper = new PageHelper();
+        List<PageInfo> pageInfos = pageHelper.SetStartPage(posts,Integer.parseInt(page),1);
+        model.addAttribute("posts",pageInfos.get(0).getList());
+        model.addAttribute("totalPage",pageInfos.get(0).getTotalPage());
+        model.addAttribute("pageNow",pageInfos.get(0).getPageNow());
+        model.addAttribute("firstPage",pageInfos.get(0).isFirstPage());
+        model.addAttribute("lastPage",pageInfos.get(0).isLastPage());
+        return model;
+    } 
 }

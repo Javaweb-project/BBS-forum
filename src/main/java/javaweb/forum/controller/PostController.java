@@ -1,11 +1,14 @@
 package javaweb.forum.controller;
 
 import javaweb.forum.entity.Post;
+import javaweb.forum.pageTool.PageHelper;
+import javaweb.forum.pageTool.PageInfo;
 import javaweb.forum.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -23,14 +26,15 @@ public class PostController {
      * @return
      */
     @RequestMapping("postsByTime")
-    public String postsByTime(Model model) {
+    public String postsByTime(Model model,@RequestParam(name = "page",defaultValue = "1") String page) {
         List<Post> posts = postService.findAllOrderByPostTimeDesc();
         List<Post> topPosts = postService.selectTop(posts);
         /**
          * 将置顶和非置顶的帖子分开
          */
         posts.removeAll(topPosts);
-        model.addAttribute("posts",posts);
+        if(posts.size() != 0) 
+            model = postService.devidePage(model,posts,page);
         model.addAttribute("topPosts",topPosts);
         return "listPosts";
     }
@@ -41,14 +45,15 @@ public class PostController {
      * @return
      */
     @RequestMapping("postsByView")
-    public String postsByView(Model model) {
+    public String postsByView(Model model,@RequestParam(name = "page",defaultValue = "1") String page) {
         List<Post> posts = postService.findAllOrderByPostViewDesc();
         List<Post> topPosts = postService.selectTop(posts);
         /**
          * 将置顶和非置顶的帖子分开
          */
         posts.removeAll(topPosts);
-        model.addAttribute("posts",posts);
+        if(posts.size() != 0)
+            model = postService.devidePage(model,posts,page);
         model.addAttribute("topPosts",topPosts);
         return "listPosts";
     }
@@ -59,11 +64,12 @@ public class PostController {
      * @return
      */
     @RequestMapping("highLightPosts")
-    public String highLight(Model model) {
+    public String highLight(Model model,@RequestParam(name = "page",defaultValue = "1") String page) {
         List<Post> posts = postService.findAllPostHighLightOrderByPostTimeDesc();
         List<Post> topPosts = postService.selectTop(posts);
         posts.removeAll(topPosts);
-        model.addAttribute("posts",posts);
+        if(posts.size() != 0)
+            model = postService.devidePage(model,posts,page);
         model.addAttribute("topPosts",topPosts);
         return "listPosts";
     }
@@ -72,11 +78,12 @@ public class PostController {
      * 按时间返回需求贴
      */
     @RequestMapping("demandPosts")
-    public String demand(Model model) {
+    public String demand(Model model,@RequestParam(name = "page",defaultValue = "1") String page) {
         List<Post> posts = postService.findAllDemandOrderByPostTimeDesc();
         List<Post> topPosts = postService.selectTop(posts);
         posts.removeAll(topPosts);
-        model.addAttribute("posts",posts);
+        if(posts.size() != 0)
+            model = postService.devidePage(model,posts,page);
         model.addAttribute("topPosts",topPosts);
         return "listPosts";
     }
@@ -151,5 +158,16 @@ public class PostController {
         else
             map.put("res","删除失败");
         return map;
-    }    
+    }  
+    
+    @RequestMapping("test")
+    @ResponseBody
+    public Map<String,Object> test(HttpServletRequest request, @RequestParam(name = "page",defaultValue = "1") String page) {
+        Map<String,Object> map = new HashMap<>();
+        List<Post> posts = postService.findAllOrderByPostTimeDesc();
+        PageHelper pageHelper = new PageHelper();
+        List<PageInfo> pageInfos = pageHelper.SetStartPage(posts,Integer.parseInt(page),1);
+        map.put("message",pageInfos);
+        return map;
+    }
 }
