@@ -1,0 +1,110 @@
+body{
+    font-size: 18px;
+}
+
+.head{
+    padding-right: 60px;
+    padding-left: 60px;
+}
+
+.main{
+    padding-left: 100px;
+}
+
+.panel-default{
+    background-color: #f5f5f5;
+}
+
+.panel{
+    padding: 5px;
+    margin-bottom: 5px;
+    border-color: #c4c4c4;
+}
+
+a{
+    text-decoration: none;
+    font-weight: 700;
+    color: #505050;
+}
+
+.bigger-5{
+    font-size: 125%;
+}
+
+.jinghua-label{
+    position: relative;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.jinghua-icon{
+    color: #ba234e;
+    font-size: 1.4em;
+    left: .2em;
+    top: -0.2em;
+    position: absolute;
+}
+
+.smaller-5{
+    font-size: 115%;
+}
+
+.smaller-30.pull-right{
+    margin-top: 6px;
+}
+
+.smaller-30{
+    font-size: 90%;
+}
+
+.brief-0{
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.brief-2{
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.grayout{
+    opacity: .7;
+}
+
+.tag{
+    display: inline-block;
+    min-width: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    border-width: 0;
+    padding: 3px 6px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.top-tag{
+    color: #ce8383;
+    background-color: #dee0ec;
+}
+
+.demand-tag{
+    color: #7AB4C0; 
+    background-color: #DEE0EC;
+}
+
+hr{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-color: #e8e8e8;
+}
+
+.row{
+    margin: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.text-center{
+    text-align: center;
+}
