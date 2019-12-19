@@ -30,7 +30,13 @@ public class UserController {
     }
     @RequestMapping("login")
     @ResponseBody
-    public Map<String, Object> login(String name,String password,int useradmin, HttpServletRequest request){
+    public Map<String, Object> login(User user, HttpServletRequest request){
         return result;
+    }
+
+    @RequestMapping("register")
+    @ResponseBody
+    public void insert(){
+
     }
 }
