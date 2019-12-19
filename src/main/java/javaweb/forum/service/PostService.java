@@ -113,7 +113,7 @@ public class PostService {
      * @param posts 需要分页的列表
      * @param page 需要的某一页的内容
      * @return
-     */            
+     */
     public Model dividePage(Model model,List<Post> posts,String page) {
         PageHelper pageHelper = new PageHelper();
         List<PageInfo> pageInfos = pageHelper.SetStartPage(posts,Integer.parseInt(page),1);

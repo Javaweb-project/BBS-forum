@@ -142,7 +142,12 @@ public class PostController {
             map.put("res","修改置顶失败");
         return map;
     }
-    
+
+    /**
+     * 根据 post_id删除帖子
+     * @param request
+     * @return
+     */
     @RequestMapping("delPost")
     @ResponseBody
     public Map<String,String> delPost(HttpServletRequest request) {
