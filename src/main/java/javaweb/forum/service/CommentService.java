@@ -50,4 +50,17 @@ public class CommentService {
     public int updateAccept(int accept,String post_id,String comment_user_id,String comment_time) {
         return dao.updateAccept(accept,post_id,comment_user_id,comment_time);
     }
+
+    /**
+     * 查找某个需求帖子是否已经有采纳的评论
+     * @param post_id
+     * @return
+     */
+    public Boolean hasAccept(String post_id) {
+        List<Comment> comments = dao.findOneAccepted(post_id);
+        if(comments.size() > 0)
+            return true;
+        else
+            return false;
+    }
 }

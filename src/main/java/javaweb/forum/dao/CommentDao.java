@@ -13,6 +13,9 @@ public interface CommentDao extends JpaRepository<Comment,String> {
     @Query(value = "select * from comment where post_id = ?1 order by comment_time desc",nativeQuery = true)
     List<Comment> findCommentsByPostId(String post_id);
 
+    @Query(value = "select * from comment where comment_accept = 1 and post_id = ?1",nativeQuery = true)
+    List<Comment> findOneAccepted(String post_id);
+    
     @Transactional
     @Modifying
     @Query(value = "delete from comment where post_id = ?1",nativeQuery = true)

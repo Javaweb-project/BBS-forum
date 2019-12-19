@@ -82,12 +82,12 @@ function btnThing() {
 
 /* 动态显示发帖人姓名，设置同步刷新是为了让success可以改变html标签 */
 function setUserName() {
-    var names = $(".name");
-    for(var i in names) {
-        var name = names.eq(i);
-        var text = name.text();
+    var users = $(".user");
+    for(var i in users) {
+        var user = users.eq(i);
+        var text = user.text();
         if(text == "发帖人") {
-            var user_id = name.attr("id");
+            var user_id = user.attr("value");
             $.ajax({
                 type: 'post',
                 url: '/user/findNameById',
@@ -95,7 +95,7 @@ function setUserName() {
                 dataType: 'json',
                 async: false,
                 success: function(data) {
-                    name.text(data.user_name);
+                    user.text(data.user_name);
                 }
             })
         }

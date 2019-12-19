@@ -124,6 +124,7 @@ hr{
 .main-text{
     word-break: break-all;
     padding-top: 5px;
+    text-indent: 2em;
 }
 
 /*帖子内容超出显示省略号*/
@@ -133,4 +134,15 @@ hr{
     text-overflow: ellipsis;
     white-space: nowrap;
     display: inline-block;
+}
+
+.float-right{
+    float: right;
+    margin-top: 20px;
+}
+
+textarea{
+    overflow-y: auto;
+    display: block;
+    width: 100%;
 }
