@@ -77,4 +77,17 @@ public class PostController {
         model.addAttribute("topPosts",topPosts);
         return "system";
     }
+
+    /**
+    * 获取指定帖子的浏览量
+     * @param model
+     * @return
+    * */
+    @RequestMapping("findPostView")
+    public String findPostView(Model model){
+
+
+        model.addAllAttributes("view",);
+    }
+
 }

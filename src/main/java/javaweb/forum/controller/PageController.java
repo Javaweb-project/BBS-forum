@@ -10,4 +10,8 @@ public class PageController {
     public String system(){
         return "system";
     }
+
+    @RequestMapping("postContent")
+    public String postContent() { return "postContent";}
+    
 }
