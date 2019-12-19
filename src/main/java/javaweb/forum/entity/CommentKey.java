@@ -5,7 +5,7 @@ import javax.persistence.Embeddable;
 import java.io.Serializable;
 
 /**
- * Comment类的符合主键
+ * Comment类的复合主键
  */
 @Embeddable
 public class CommentKey implements Serializable {

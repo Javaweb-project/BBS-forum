@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name = "comment")
 public class Comment {
     /**
-     * 符合主键
+     * 复合主键
      */
     @EmbeddedId
     private CommentKey id;
