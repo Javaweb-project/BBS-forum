@@ -18,4 +18,6 @@ public class UserService {
     public User findByUserId(String user_id) {
         return dao.findByUserId(user_id);
     }
+
+    public void insert(User user){dao.insert(user);}
 }

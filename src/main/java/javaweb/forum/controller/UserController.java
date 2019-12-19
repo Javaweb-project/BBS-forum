@@ -5,6 +5,7 @@ import javaweb.forum.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -15,7 +16,8 @@ import java.util.Map;
 public class UserController {
     @Autowired
     private UserService userService;
-    
+
+    private Map<String, Object> result = new HashMap<>();
     @RequestMapping("findNameById")
     @ResponseBody
     public Map<String,String> findNameById(HttpServletRequest request) {
@@ -25,5 +27,10 @@ public class UserController {
         Map<String,String> map = new HashMap<>();
         map.put("user_name",user_name);
         return map;
+    }
+    @RequestMapping("login")
+    @ResponseBody
+    public Map<String, Object> login(String name,String password,int useradmin, HttpServletRequest request){
+        return result;
     }
 }
