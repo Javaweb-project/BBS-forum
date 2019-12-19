@@ -18,4 +18,3 @@ spring:
     servlet:
       content-type: text/html
     cache: false
-    

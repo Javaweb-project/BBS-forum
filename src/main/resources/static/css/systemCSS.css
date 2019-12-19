@@ -2,7 +2,7 @@ body{
     font-size: 18px;
 }
 
-.top{
+.head{
     padding-right: 60px;
     padding-left: 60px;
 }
@@ -16,9 +16,12 @@ body{
 }
 
 .panel{
-    padding: 5px;
-    margin-bottom: 5px;
+    padding: 0px 5px 0px 5px;
     border-color: #c4c4c4;
+}
+
+.panel-body{
+    padding: 0px;
 }
 
 a{
@@ -62,34 +65,72 @@ a{
     margin-bottom: 0;
 }
 
+.brief-2{
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
 .grayout{
     opacity: .7;
 }
 
-.newchapter-badge {
+.tag{
+    display: inline-block;
+    min-width: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    border-width: 0;
+    padding: 3px 6px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.top-tag{
     color: #ce8383;
     background-color: #dee0ec;
 }
 
-
-.badge{
-    display: inline-block;
-    min-width: 10px;
-    padding: 3px 7px;
-    font-size: 12px;
-    font-weight: 700;
-    color: #fff;
-    line-height: 1;
-    vertical-align: middle;
-    white-space: nowrap;
-    text-align: center;
-    background-color: #777;
-    border-radius: 10px;
+.demand-tag{
+    color: #7AB4C0; 
+    background-color: #DEE0EC;
 }
 
-.badge-tag {
-    padding: 3px 6px;
-    border-radius: 8px;
-    margin: -4px 0 0 -1px;
-    border-width: 0;
+hr{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-color: #e8e8e8;
+}
+
+.row{
+    margin: 0;
+    /*padding-left: 0;*/
+    /*padding-right: 0;*/
+    padding: 0;
+}
+
+.text-center{
+    text-align: center;
+}
+
+.pagination{
+    margin: 0;
+}
+
+.font-5{
+    font-size: 16px;
+}
+
+.main-text{
+    word-break: break-all;
+    padding-top: 5px;
+}
+
+/*帖子内容超出显示省略号*/
+.post-content{
+    width: 700px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
 }

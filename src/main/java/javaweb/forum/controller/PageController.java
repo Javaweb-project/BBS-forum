@@ -13,5 +13,10 @@ public class PageController {
 
     @RequestMapping("postContent")
     public String postContent() { return "postContent";}
-    
+
+
+    @RequestMapping("showPost")
+    public String showPost() {
+        return "showPost";
+    }
 }

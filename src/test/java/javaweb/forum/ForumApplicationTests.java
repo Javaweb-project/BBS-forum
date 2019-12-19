@@ -1,11 +1,12 @@
 package javaweb.forum;
 
-import javaweb.forum.entity.Post;
+import javaweb.forum.entity.Comment;
+import javaweb.forum.service.CommentService;
 import javaweb.forum.service.PostService;
+import javaweb.forum.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
 import java.util.List;
 
 @SpringBootTest
@@ -13,12 +14,16 @@ class ForumApplicationTests {
 
     @Autowired
     PostService postService;
+    @Autowired
+    UserService userService;
+    @Autowired
+    CommentService commentService;
     
     @Test
     void contextLoads() {
-        List<Post> posts = postService.findAllOrderByPostTimeDesc();
-        posts.forEach(p->{
-            System.out.println("帖子的id："+p.getPostId());
+        List<Comment> comments = commentService.findCommentsByPostId("001");
+        comments.forEach(c->{
+            System.out.println(c.getId().getCommentTime());
         });
     }
 
