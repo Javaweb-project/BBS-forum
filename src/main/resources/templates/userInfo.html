@@ -1,11 +1,74 @@
 <!DOCTYPE html>
+<!-- suppress ThymeleafVariablesResolveInspection --><!-- suppress ThymeleafVariablesResolveInspection -->
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>帖子列表</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
     <link th:href="@{/css/systemCSS.css}" rel="stylesheet"/>
 </head>
 <body>
+<!--置顶部分，不展示简要内容-->
 
+<div class="panel-body" th:if="${users}">
+    <div class="row text-center">
+        <ul class="pagination pagination-lg" role="navigation">
+            <li th:class="${firstPage}?'disabled':''" id="pre">
+                <span>上一页</span>
+            </li>
+            <li th:if="${pageNow}-1>=1" class="page" th:id="'page'+${pageNow}-1">
+                <span th:text="${pageNow}-1">1</span>
+            </li>
+            <li class="active page" th:id="'page'+${pageNow}">
+                <span th:text="${pageNow}">1</span>
+            </li>
+            <li th:if="${pageNow}+1<=${totalPage}" class="page" th:id="'page'+${pageNow+1}">
+                <span th:text="${pageNow+1}">1</span>
+            </li>
+            <li th:class="${lastPage}?'disabled':''" id="next">
+                <span>下一页</span>
+            </li>
+        </ul>
+    </div>
+    <article class="brief-2" th:each="post:${posts}" th:id="${post.getPostId()}">
+        <div class="row">
+            <div class="col-xs-12 h5">
+                <span class="tag demand-tag" th:if="${post.getPostPoint()}">需求帖</span>
+                <a href="#" class="bigger-5" th:text="${post.getPostTitle()}">帖子标题</a>
+                <span class="jinghua-label" title="精华" th:if="${post.getPostHighLight()}">
+                    <span class="glyphicon glyphicon-thumbs-up jinghua-icon"></span>
+                </span>
+                <span th:if="${session.user!=null}">
+                    <span th:switch="${post.getPostHighLight()}" th:if="${session.user.userAdmin==1}">
+                        <input th:case="0" type="button" class="btn btn-sm btn-info high" value="加精"/>
+                        <input th:case="1" type="button" class="btn btn-sm btn-info high" value="取消加精"/>
+                        <input type="button" class="btn btn-sm btn-success top" value="置顶"/>
+                        <input type="button" class="btn btn-sm btn-danger del" value="删除"/>
+                    </span>
+                </span>
+                <span class="pull-right smaller-5">
+                    <a href="#" class="name" th:id="${post.getUserId()}">发帖人</a>
+                </span>
+            </div>
+            <div class="col-xs-12 h5">
+                <span class="smaller-5" th:text="${post.getPostContent()}"></span>
+                <span class="pull-right smaller-30">
+                    <em>
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                        <!--浏览人数-->
+                        <span style="vertical-align: inherit;" th:text="${post.getPostView()}+'&nbsp'"></span>
+                        <span class="glyphicon glyphicon-bell"></span>
+                        <!--发布时间-->
+                        <span style="vertical-align: inherit;" th:text="${post.getPostTime().substring(0,post.getPostTime().length()-3)}"></span>
+                    </em>
+                </span>
+            </div>
+        </div>
+    </article>
+    <hr/>
+</div>
+<script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/postsJS.js}"></script>
 </body>
 </html>
