@@ -10,4 +10,9 @@ public class PageController {
     public String system(){
         return "system";
     }
+    
+    @RequestMapping("showPost")
+    public String showPost() {
+        return "showPost";
+    }
 }
