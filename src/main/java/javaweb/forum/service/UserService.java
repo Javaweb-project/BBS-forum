@@ -18,7 +18,13 @@ public class UserService {
     public User findByUserId(String user_id) {
         return dao.findByUserId(user_id);
     }
-    
+
+    /**
+     * 增加用户的积分
+     * @param user_id
+     * @param addPoint
+     * @return
+     */
     public int addUserPoint(String user_id,int addPoint) {
         return dao.addUserPoint(user_id,addPoint); 
     }

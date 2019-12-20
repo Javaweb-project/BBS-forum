@@ -60,6 +60,7 @@ $("#reply button").click(function() {
     $("#content").text("");
 })
 
+/*需求帖主人采纳留言*/
 function setAccept() {
     var accept = $(".accept");
     for(var i in accept) {
@@ -83,12 +84,34 @@ function setAccept() {
                 success: function(data) {
                     var res = data.res;
                     alert(res);
-                    if(res == "采纳成功")
-                        location.reload();
+                    if(res == "采纳成功") {
+                        addPoint(user_id);
+                        location.reload();    
+                    }
+                        
                 }
             })     
         })
     }
 }
+
+/*给被采纳留言的用户增加积分*/
+function addPoint(user_id) {
+    var point = $("#allComments").attr("value");
+    $.ajax({
+        type: 'post',
+        url: '/user/addPoint',
+        data: {
+            user_id: user_id,
+            point: point
+        },
+        async: false,
+        dataType: 'json',
+        success: function(data) {
+            alert(data.res);    
+        }
+    })
+}
+
 setCommentUserName();
 setAccept();
