@@ -2,7 +2,7 @@ body{
     font-size: 18px;
 }
 
-.top{
+.head{
     padding-right: 60px;
     padding-left: 60px;
 }
@@ -62,34 +62,49 @@ a{
     margin-bottom: 0;
 }
 
+.brief-2{
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
 .grayout{
     opacity: .7;
 }
 
-.newchapter-badge {
+.tag{
+    display: inline-block;
+    min-width: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    border-width: 0;
+    padding: 3px 6px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.top-tag{
     color: #ce8383;
     background-color: #dee0ec;
 }
 
-
-.badge{
-    display: inline-block;
-    min-width: 10px;
-    padding: 3px 7px;
-    font-size: 12px;
-    font-weight: 700;
-    color: #fff;
-    line-height: 1;
-    vertical-align: middle;
-    white-space: nowrap;
-    text-align: center;
-    background-color: #777;
-    border-radius: 10px;
+.demand-tag{
+    color: #7AB4C0; 
+    background-color: #DEE0EC;
 }
 
-.badge-tag {
-    padding: 3px 6px;
-    border-radius: 8px;
-    margin: -4px 0 0 -1px;
-    border-width: 0;
+hr{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-color: #e8e8e8;
+}
+
+.row{
+    margin: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.text-center{
+    text-align: center;
 }
