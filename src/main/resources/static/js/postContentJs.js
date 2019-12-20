@@ -1,14 +1,36 @@
-function edit() {
-    var text = document.getElementById("text").innerText;
 
-    document.getElementById("text").innerHTML =
-        "<textarea class='col-lg-12 col-md-12 col-sm-12 col-xs-12' style='height: 300px;resize: none;' id='textarea'> "  + text + "</textarea>";
+
+
+// function editPost() {
+//     var text = document.getElementById("text").innerText;
+//     document.getElementById("myTextarea").readOnly=true;
+//
+//
+//     document.getElementById("textarea")
+// }
+$("#edit").click(function(){
+    document.getElementById("textarea").readOnly=false;
     document.getElementById("edit").style.visibility = "hidden";
     document.getElementById("submit").style.visibility= "visible";
-    document.getElementById()
-}
+});
 
-function submit() {
-    var text = document.getElementById("textarea").innerText;
-
+function submitPost() {
+    var text = $("#textarea").val();
+    var post_id = $("#postId").val();
+    console.log(post_id);
+    console.log(text);
+    $.ajax({
+        type: 'post',
+        url: 'updatePostContent',
+        data: {post_id : post_id,post_Content : text},
+        dataType: 'json',
+        success: function(res) {
+            console.log("成功");
+            location.reload();
+        },
+        error:function (res) {
+            console.log("失败");
+            location.reload();
+        }
+    })
 }

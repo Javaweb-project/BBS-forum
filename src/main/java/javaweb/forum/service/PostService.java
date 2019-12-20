@@ -123,5 +123,15 @@ public class PostService {
         model.addAttribute("firstPage",pageInfos.get(0).isFirstPage());
         model.addAttribute("lastPage",pageInfos.get(0).isLastPage());
         return model;
-    } 
+    }
+
+    /***
+     * 更新内容
+     * @param
+     * @param
+     * @return
+     */
+    public int updatePostContent(String post_id , String post_content){
+       return dao.updatePostContent(post_id ,post_content);
+    }
 }

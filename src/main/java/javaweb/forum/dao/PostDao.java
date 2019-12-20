@@ -42,4 +42,9 @@ public interface PostDao extends JpaRepository<Post,String> {
     @Modifying
     @Query(value = "delete from post where post_id = ?1",nativeQuery = true)
     int deleteByPostId(String post_id);
+
+    @Transactional
+    @Modifying
+    @Query(value = "update post set post_content = ?2 where post_id = ?1",nativeQuery = true)
+    int updatePostContent(String post_id , String post_content);
 }

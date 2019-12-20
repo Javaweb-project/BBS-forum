@@ -177,5 +177,24 @@ public class PostController {
         model.addAttribute("post",post);
         return "postContent";
     }
+    /***
+     * 更新帖子的内容
+     * @param
+     * @return
+     */
+    @RequestMapping("updatePostContent")
+    @ResponseBody
+    public Map<String,String> updatePostContent(HttpServletRequest request){
+        String post_id = request.getParameter("post_id");
+        String post_content = request.getParameter("post_content");
+        Map<String,String> map = new HashMap<>();
+        int res;
+        res = postService.updatePostContent(post_id,post_content);
+        if(res == 1)
+            map.put("res","更新成功");
+        else
+            map.put("res","更新失败");
+        return map;
+    }
 
 }
