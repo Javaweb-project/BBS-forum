@@ -47,9 +47,9 @@ public class CommentController {
         String time = request.getParameter("time");
         Comment comment = new Comment();
         CommentKey key = new CommentKey();
-        key.setCommentUserId(user_id);
+        key.setCommentUserId(Integer.parseInt(user_id));
         key.setCommentTime(time);
-        key.setPostId(post_id);
+        key.setPostId(Integer.valueOf(post_id));
         comment.setId(key);
         comment.setCommentContent(content);
         comment.setCommentAccept(0);

@@ -10,27 +10,27 @@ import java.io.Serializable;
 @Embeddable
 public class CommentKey implements Serializable {
     @Column(name = "post_id")
-    private String postId;
+    private int postId;
 
     @Column(name = "comment_user_id")
-    private String commentUserId;
+    private int commentUserId;
 
     @Column(name = "comment_time")
     private String commentTime;
 
-    public String getPostId() {
+    public int getPostId() {
         return postId;
     }
 
-    public void setPostId(String postId) {
+    public void setPostId(int postId) {
         this.postId = postId;
     }
 
-    public String getCommentUserId() {
+    public int getCommentUserId() {
         return commentUserId;
     }
 
-    public void setCommentUserId(String commentUserId) {
+    public void setCommentUserId(int commentUserId) {
         this.commentUserId = commentUserId;
     }
 

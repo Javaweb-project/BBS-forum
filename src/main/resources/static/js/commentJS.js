@@ -97,13 +97,13 @@ function setAccept() {
 
 /*给被采纳留言的用户增加积分*/
 function addPoint(user_id) {
-    var point = $("#allComments").attr("value");
+    var addPoint = $("#allComments").attr("value");
     $.ajax({
         type: 'post',
         url: '/user/addPoint',
         data: {
             user_id: user_id,
-            point: point
+            point: addPoint
         },
         async: false,
         dataType: 'json',

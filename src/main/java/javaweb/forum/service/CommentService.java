@@ -17,7 +17,7 @@ public class CommentService {
      * @return
      */
     public List<Comment> findCommentsByPostId(String post_id) {
-        return dao.findCommentsByPostId(post_id);    
+        return dao.findCommentsByPostId(Integer.parseInt(post_id));    
     }
 
     /**
@@ -27,7 +27,7 @@ public class CommentService {
      * @return
      */
     public int deleteCommentsByPostId(String post_id) {
-        return dao.deleteCommentsByPostId(post_id);
+        return dao.deleteCommentsByPostId(Integer.parseInt(post_id));
     }
 
     /**
@@ -48,7 +48,7 @@ public class CommentService {
      * @return
      */
     public int updateAccept(int accept,String post_id,String comment_user_id,String comment_time) {
-        return dao.updateAccept(accept,post_id,comment_user_id,comment_time);
+        return dao.updateAccept(accept,Integer.parseInt(post_id),Integer.parseInt(comment_user_id),comment_time);
     }
 
     /**
@@ -57,7 +57,7 @@ public class CommentService {
      * @return
      */
     public Boolean hasAccept(String post_id) {
-        List<Comment> comments = dao.findOneAccepted(post_id);
+        List<Comment> comments = dao.findOneAccepted(Integer.parseInt(post_id));
         if(comments.size() > 0)
             return true;
         else
