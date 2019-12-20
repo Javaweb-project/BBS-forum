@@ -86,6 +86,15 @@ public class PostController {
         return "listPosts";
     }
 
+    @RequestMapping("myPost")
+    public String myPosts(Model model,@RequestParam(name = "page",defaultValue = "1") String page,HttpServletRequest request) {
+        String user_id = request.getParameter("user_id");
+        List<Post> posts = postService.findByUserId(user_id);
+        if(posts.size() != 0)
+            model = postService.dividePage(model,posts,page);
+        return "myPost";
+    }
+
     /**
      * 按照帖子标题进行模糊查询
      */

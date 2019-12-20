@@ -10,4 +10,7 @@ public class PageController {
     public String system(){
         return "system";
     }
+
+    @RequestMapping("personalCenter")
+    public String personal(){ return "personalCenter";}
 }

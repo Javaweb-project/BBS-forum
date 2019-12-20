@@ -61,6 +61,13 @@ public class PostService {
     }
 
     /**
+     * 根据帖子 id返回帖子信息
+     * @param user_id
+     * @return
+     */
+    public List<Post> findByUserId(String user_id){ return dao.findByUserId(Integer.parseInt(user_id)); }
+
+    /**
      * 按照帖子标题进行模糊查询
      * @param title
      * @return
@@ -75,7 +82,7 @@ public class PostService {
      * @return
      */
     public Post findByPostId(String post_id) {
-        return dao.findByPostId(post_id);
+        return dao.findByPostId(Integer.parseInt(post_id));
     }
     
     /**
@@ -85,7 +92,7 @@ public class PostService {
      * @return
      */
     public int updateHighLight(String post_id,int high) {
-        return dao.updateHighLight(post_id,high);
+        return dao.updateHighLight(Integer.parseInt(post_id),high);
     }
 
     /**
@@ -95,7 +102,7 @@ public class PostService {
      * @return
      */
     public int updateTop(String post_id,int top) {
-        return dao.updateTop(post_id,top);
+        return dao.updateTop(Integer.parseInt(post_id),top);
     }
 
     /**
@@ -104,7 +111,7 @@ public class PostService {
      * @return
      */
     public int deleteByPostId(String post_id) {
-        return dao.deleteByPostId(post_id);
+        return dao.deleteByPostId(Integer.parseInt(post_id));
     }
 
     /**

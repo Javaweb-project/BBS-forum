@@ -33,13 +33,21 @@ public class UserController {
 
     @RequestMapping("myInfo")
     public String userById(Model model, @RequestParam("user_id") String user_id) {
-        List<User> users = (List<User>) userService.findByUserId(user_id);
-        model.addAttribute("username",users.get(0).getUserName());
-        model.addAttribute("userphone",users.get(0).getUserPhone());
-        model.addAttribute("userworkplace",users.get(0).getUserWorkPlace());
-        model.addAttribute("userjob",users.get(0).getUserJob());
-        model.addAttribute("useradmin",users.get(0).getUserAdmin());
-        model.addAttribute("userpoint",users.get(0).getUserPoint());
+        User user = userService.findByUserId(user_id);
+        model.addAttribute("user",user);
         return "userInfo";
     }
+
+    @RequestMapping("updateUser")
+    public String updateByUserId(HttpServletRequest request){
+        String user_id = request.getParameter("user_id");
+
+        String user_phone = request.getParameter("user_phone");
+        String user_workplace = request.getParameter("user_workplace");
+        String user_job = request.getParameter("user_job");
+
+        userService.updateByUserId(user_id,user_phone,user_workplace,user_job);
+
+        return "userInfo";
+}
 }

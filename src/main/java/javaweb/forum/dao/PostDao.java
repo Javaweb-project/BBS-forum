@@ -26,19 +26,22 @@ public interface PostDao extends JpaRepository<Post,String> {
     List<Post> findByTitleLike(String title);
     
     @Query(value = "select * from post where post_id = ?1",nativeQuery = true)
-    Post findByPostId(String post_id);
+    Post findByPostId(int post_id);
+
+    @Query(value = "select * from post where user_id = ?1",nativeQuery = true)
+    List<Post> findByUserId(int user_id);
     
     @Transactional
     @Modifying(clearAutomatically = true)
     @Query(value = "update post set post_highlight = ?2 where post_id = ?1",nativeQuery = true)
-    int updateHighLight(String post_id,int high);
+    int updateHighLight(int post_id,int high);
 
     @Transactional
     @Modifying(clearAutomatically = true)
     @Query(value = "update post set post_top = ?2 where post_id = ?1",nativeQuery = true)
-    int updateTop(String post_id,int top);
+    int updateTop(int post_id,int top);
     
     @Modifying
     @Query(value = "delete from post where post_id = ?1",nativeQuery = true)
-    int deleteByPostId(String post_id);
+    int deleteByPostId(int post_id);
 }
