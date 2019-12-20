@@ -1,14 +1,14 @@
 /* 表单内容传输给后端 */
 function submitPost() {
     var title=$("#inputTitle").val();
-    var integral=($("#inputIntegral").val())?($("#inputIntegral").val()):0;
+    var point=($("#inputIntegral").val())?($("#inputIntegral").val()):0;
     var content=$("#inputContent").val();
     $.ajax({
         type: 'post',
-        url: '/post/submitPost',
+        url: '/submitPost',
         data: {
                 title: title,
-                integral: integral,
+                point: point,
                 content: content
         },
         dataType: 'json',

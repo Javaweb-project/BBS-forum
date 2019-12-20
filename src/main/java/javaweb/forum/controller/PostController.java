@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -155,7 +156,6 @@ public class PostController {
     @ResponseBody
     public Map<String,String> delPost(HttpServletRequest request) {
         String post_id = request.getParameter("post_id");
-        Post post = postService.findByPostId(post_id);
         Map<String,String> map = new HashMap<>();
         int res;
         res = postService.deleteByPostId(post_id);
@@ -170,16 +170,19 @@ public class PostController {
     @ResponseBody
     public Map<String,String> submitPost(HttpServletRequest request, HttpSession session) {
         String post_title = request.getParameter("title");
+        String post_content = request.getParameter("content");
+        int post_point = Integer.parseInt(request.getParameter("point"));
         User loginUser = (User) session.getAttribute("user");
-        String user_id = loginUser.getUserId();
-        System.out.println(post_title);
-//        Post post = postService.findByPostId(post_id);
+        int user_id = loginUser.getUserId();
+        int post_top = 0;
+        int post_highlight = 0;
+        int post_view = 0;
         Map<String,String> map = new HashMap<>();
         int res;
-//        res = postService.deleteByPostId(post_id);
-//        if(res == 1)
-//            map.put("res","发布成功");
-//        else
+        res= postService.saveSubmitPost(user_id,post_title,post_point,post_content, new Timestamp(System.currentTimeMillis()),post_top,post_highlight, post_view );
+        if(res == 1)
+            map.put("res","发布成功");
+        else
             map.put("res","发布失败");
         return map;
     }
