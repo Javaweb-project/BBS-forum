@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8"/>
     <title>技术宅论坛</title>
-    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
-    <link th:href="@{/css/systemCSS.css}" rel="stylesheet" />
+    <link th:href="@{css/bootstrap.min.css}" href="css/bootstrap.min.css" rel="stylesheet"  type="text/css"/>
+    <link th:href="@{css/systemCSS.css}" href="css/systemCSS.css" rel="stylesheet"  type="text/css"/>
 </head>
 <body>
 <nav class="navbar navbar-inverse">
@@ -46,14 +46,12 @@
         <div class="col-lg-8  col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12" >
             <!-- 标题 -->
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <h4 class="question-title">
-
-                <span th:text="${post.getPostTitle()}">Clearlove</span></h4>
+                <h4 class="question-title"><span>Test</span></h4>
                 <span class="text-desc">
 		            	作者：<span>7777</span> |
 		            	发布时间：<span>2019-12-18 17:21</span> |
 		            	阅读数： <span>8</span>
-		           	</span>
+                </span>
             </div>
             <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <!-- 文本 -->
@@ -74,12 +72,9 @@
                 <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             </div>
         </div>
-
     </div>
 </div>
 <script th:src="@{/js/jquery-3.3.1.min.js}"></script>
 <script th:src="@{/js/bootstrap.min.js}"></script>
-<script th:src="@{/js/postContentJS.js}"></script>
 </body>
 </html>
-<!--th:text="${post.name}"-->
