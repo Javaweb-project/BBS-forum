@@ -27,4 +27,7 @@ public interface CommentDao extends JpaRepository<Comment,String> {
     @Modifying
     @Query(value = "update comment set comment_accept = ?1 where post_id = ?2 and comment_user_id = ?3 and comment_time = ?4",nativeQuery = true)
     int updateAccept(int accept,String post_id,String comment_user_id,String comment_time);
+
+    @Query(value = "select count(*) from comment where post_id = ?1",nativeQuery = true)
+    int findCountByPostId(String post_id);
 }

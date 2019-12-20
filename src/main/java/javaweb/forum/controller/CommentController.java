@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
@@ -19,7 +21,7 @@ public class CommentController {
     public String findByPostId(Model model, HttpServletRequest request) {
         String post_id = request.getParameter("post_id");
         List<Comment> comments = commentService.findCommentsByPostId(post_id);
-        model.addAttribute("comments",comments);
+        model.addAttribute("comments", comments);
         return "showPost::comment_refresh";
     }
 }

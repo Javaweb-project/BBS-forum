@@ -50,4 +50,13 @@ public class CommentService {
     public int updateAccept(int accept,String post_id,String comment_user_id,String comment_time) {
         return dao.updateAccept(accept,post_id,comment_user_id,comment_time);
     }
+
+    /**
+     * 查询该帖子一共有多少回复
+     * @param post_id
+     * @return
+     * */
+    public int findCountByPostId(String post_id){
+        return dao.findCountByPostId(post_id);
+    }
 }
