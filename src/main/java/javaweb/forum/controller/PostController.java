@@ -164,15 +164,19 @@ public class PostController {
     }
 
     /**
-    * 获取指定帖子的浏览量
+    * 获取指定帖子的所有信息
      * @param model
      * @return
     * */
-    @RequestMapping("findPostView")
-    public String findPostView(Model model){
-
-
-        model.addAllAttributes("view",);
+    @RequestMapping("findPostByPostId")
+    public String findPostByByPostId(Model model, HttpServletRequest request){
+//        String post_id = request.getParameter("post_id");
+//        Post post = postService.findByPostId("001");
+        Post post = new Post();
+        post.setPostTitle("7777");
+        model.addAttribute("post",post);
+        System.out.println(post);
+        return "postContent";
     }
 
 }
