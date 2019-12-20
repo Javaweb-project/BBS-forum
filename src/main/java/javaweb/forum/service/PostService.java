@@ -7,6 +7,8 @@ import javaweb.forum.pageTool.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +21,7 @@ public class PostService {
      * 查询所有帖子通过帖子发布时间降序
      * @return
      */
-    public List<Post> findAllOrderByPostTimeDesc() { 
+    public List<Post> findAllOrderByPostTimeDesc() {
         return dao.findAllOrderByPostTimeDesc();
     }
 
@@ -54,7 +56,7 @@ public class PostService {
     }
 
     /**
-     * 查询所有的需求贴，按时间返回 
+     * 查询所有的需求贴，按时间返回
      */
     public List<Post> findAllDemandOrderByPostTimeDesc() {
         return dao.findAllDemandOrderByPostTimeDesc();
@@ -77,7 +79,7 @@ public class PostService {
     public Post findByPostId(String post_id) {
         return dao.findByPostId(post_id);
     }
-    
+
     /**
      * 更新帖子的加精状态
      * @param post_id
@@ -123,5 +125,14 @@ public class PostService {
         model.addAttribute("firstPage",pageInfos.get(0).isFirstPage());
         model.addAttribute("lastPage",pageInfos.get(0).isLastPage());
         return model;
-    } 
+    }
+
+    /**
+     * 上传用户发布的帖子内容
+     * @param user_id
+     * @return
+     */
+    public int saveSubmitPost(int user_id, String post_title, int post_point, String post_content, Timestamp post_time, int post_top, int post_highlight,int post_view) {
+        return dao.saveSubmitPost(user_id,post_title,post_point,post_content,post_time,post_top,post_highlight,post_view);
+    }
 }

@@ -4,16 +4,17 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "post")
 public class Post {
     @Id
     @Column(name = "post_id")
-    private String postId;
+    private int postId;
 
     @Column(name = "user_id")
-    private String userId;
+    private int userId;
 
     @Column(name = "post_title")
     private String postTitle;
@@ -31,7 +32,7 @@ public class Post {
     private int postHighLight;
 
     @Column(name = "post_time")
-    private String postTime;
+    private Timestamp postTime;
 
     @Column(name = "post_view")
     private int postView;
@@ -44,19 +45,19 @@ public class Post {
         this.postView = postView;
     }
 
-    public String getPostId() {
+    public int getPostId() {
         return postId;
     }
 
-    public void setPostId(String postId) {
+    public void setPostId(int postId) {
         this.postId = postId;
     }
 
-    public String getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
@@ -100,11 +101,11 @@ public class Post {
         this.postHighLight = postHighLight;
     }
 
-    public String getPostTime() {
+    public Timestamp getPostTime() {
         return postTime;
     }
 
-    public void setPostTime(String postTime) {
+    public void setPostTime(Timestamp postTime) {
         this.postTime = postTime;
     }
 }

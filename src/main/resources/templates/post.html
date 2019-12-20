@@ -19,16 +19,8 @@
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <form class="navbar-form navbar-left">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="搜索话题">
-                </div>
-                <button type="submit" class="btn btn-default">
-                    <span class="glyphicon glyphicon-search"></span>
-                </button>
-            </form>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">登录</a></li>
+
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> 用户名</a>
                     <ul class="dropdown-menu">
@@ -38,6 +30,7 @@
                         <li><a href="#">退出</a></li>
                     </ul>
                 </li>
+                <li><a href="/system">回主页</a></li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
@@ -46,10 +39,11 @@
     <div class="container">
         <div class="tt-wrapper-inner">
             <h1 class="tt-title-border">发布帖子</h1>
-            <form class="form-default form-create-topic">
-                <div class="form-group"><label for="inputTopicTitle">贴子标题</label>
+            <!--/*@thymesVar id="post" type="com"*/-->
+            <form class="form-default form-create-to#" method="post">
+                <div class="form-group"><label for="inputTitle">贴子标题</label>
                     <div class="tt-value-wrapper">
-                        <input type="text" name="name" class="form-control" id="inputTopicTitle" th:value="${post_title}">
+                        <input type="text" name="name" class="form-control" id="inputTitle">
                     </div>
                 </div>
                 <div class="form-group"><label>帖子类型</label>
@@ -57,7 +51,7 @@
                         <div class="row tt-w410-col-02">
                             <div class="col-4 col-lg-3 col-xl-2">
                                 <label for="ordinary">
-                                    <input type="radio" id="ordinary" name="option" th:value="${post_type}"/>
+                                    <input type="radio" id="ordinary" name="option"/>
                                     <span class="tt-icon">
                                         <svg t="1576589606644" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4432" width="200" height="200">
                                             <path d="M681.68 855.2L502.72 636H140v-512h752v512H792zM196 580h333.28l141.04 172.8 86.8-172.8h78.88v-400h-640zM132 864h768v56h-768z" p-id="4433"></path>
@@ -69,7 +63,7 @@
 
                             <div class="col-4 col-lg-3 col-xl-2">
                                 <label for="question">
-                                    <input type="radio" id="question" name="option" th:value="${post_type}"/>
+                                    <input type="radio" id="question" name="option"/>
                                     <span class="tt-icon">
                                         <svg t="1576589905715" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5253" width="200" height="200">
                                             <path d="M831.534545 983.272727A29.090909 29.090909 0 0 1 814.545455 977.454545L582.865455 811.869091H110.312727A87.156364 87.156364 0 0 1 23.272727 724.712727V174.545455a87.156364 87.156364 0 0 1 87.04-87.272728h802.909091A87.156364 87.156364 0 0 1 1000.727273 174.545455v550.167272a87.156364 87.156364 0 0 1-87.04 87.272728H849.454545l11.636364 139.636363a29.090909 29.090909 0 0 1-28.974545 31.418182z m-721.454545-837.818182A28.974545 28.974545 0 0 0 81.454545 174.545455v550.167272a28.974545 28.974545 0 0 0 28.858182 29.090909H592.290909a29.090909 29.090909 0 0 1 16.989091 5.469091l188.276364 134.749091-8.610909-108.916363a29.090909 29.090909 0 0 1 28.974545-31.418182h95.767273A28.974545 28.974545 0 0 0 942.545455 724.712727V174.545455a28.974545 28.974545 0 0 0-28.858182-29.09091z" fill="" p-id="5254"></path>
@@ -77,6 +71,7 @@
                                             <path d="M494.312727 612.305455m-29.090909 0a29.090909 29.090909 0 1 0 58.181818 0 29.090909 29.090909 0 1 0-58.181818 0Z" fill="" p-id="5256"></path>
                                         </svg>
                                         <span class="tt-text">需求贴</span>
+                                        <span>积分：<input type="text" id="inputIntegral" style="width: 80px"></span>
                                     </span>
                                 </label>
                             </div>
@@ -85,14 +80,17 @@
                 </div>
                 <div class="pt-editor">
                     <h6 class="pt-title">帖子内容</h6>
-                    <div class="form-group"><textarea name="message" class="form-control" rows="5" th:value="${post_content}"></textarea></div>
+                    <div class="form-group"><textarea name="message" class="form-control" rows="5" id="inputContent"></textarea></div>
                     <div class="row">
-                        <div class="col-auto ml-md-auto"><a href="#" class="btn btn-secondary btn-width-lg">发布</a></div>
+                        <div class="col-auto ml-md-auto"><input class="btn btn-secondary btn-width-lg" onclick="submitPost()" value="发布" /></div>
                     </div>
                 </div>
             </form>
         </div>
     </div>
 </main>
+<script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/submitPostJS.js}"></script>
 </body>
 </html>

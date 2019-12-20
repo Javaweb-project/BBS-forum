@@ -50,8 +50,7 @@ label {
     width: 218px;
 }
 
-.tt-icon:hover,
-.tt-icon.active {
+.tt-icon:hover, .tt-icon.active {
     border-color: #2172cd;
 }
 

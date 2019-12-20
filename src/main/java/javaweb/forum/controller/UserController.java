@@ -15,7 +15,7 @@ import java.util.Map;
 public class UserController {
     @Autowired
     private UserService userService;
-    
+
     @RequestMapping("findNameById")
     @ResponseBody
     public Map<String,String> findNameById(HttpServletRequest request) {
