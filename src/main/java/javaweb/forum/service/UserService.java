@@ -26,11 +26,11 @@ public class UserService {
         if (userDao.findByUserName(user.getUserName()) == null && user.getUserPassword()!=null) {
             userDao.insert(user);
             return "注册成功";
-        } else if(userDao.findByUserName(user.getUserName()) != null){
-            return "用户已存在请更换用户名";
-        }else{
-            return "密码输入不一致";
         }
+        else if((userDao.findByUserName(user.getUserName()) != null)){
+            return "用户已存在请更换用户名";
+        }
+        return "注册失败";
     }
 
     //用户登陆逻辑
