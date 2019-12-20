@@ -1,8 +1,7 @@
 package javaweb.forum.controller;
 
 import javaweb.forum.entity.Post;
-import javaweb.forum.pageTool.PageHelper;
-import javaweb.forum.pageTool.PageInfo;
+import javaweb.forum.entity.User;
 import javaweb.forum.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,7 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,8 +34,8 @@ public class PostController {
          * 将置顶和非置顶的帖子分开
          */
         posts.removeAll(topPosts);
-        if(posts.size() != 0) 
-            model = postService.devidePage(model,posts,page);
+        if(posts.size() != 0)
+            model = postService.dividePage(model,posts,page);
         model.addAttribute("topPosts",topPosts);
         return "listPosts";
     }
@@ -53,11 +54,11 @@ public class PostController {
          */
         posts.removeAll(topPosts);
         if(posts.size() != 0)
-            model = postService.devidePage(model,posts,page);
+            model = postService.dividePage(model,posts,page);
         model.addAttribute("topPosts",topPosts);
         return "listPosts";
     }
-    
+
     /**
      * 按时间返回加精帖
      * @param model
@@ -69,7 +70,7 @@ public class PostController {
         List<Post> topPosts = postService.selectTop(posts);
         posts.removeAll(topPosts);
         if(posts.size() != 0)
-            model = postService.devidePage(model,posts,page);
+            model = postService.dividePage(model,posts,page);
         model.addAttribute("topPosts",topPosts);
         return "listPosts";
     }
@@ -83,7 +84,7 @@ public class PostController {
         List<Post> topPosts = postService.selectTop(posts);
         posts.removeAll(topPosts);
         if(posts.size() != 0)
-            model = postService.devidePage(model,posts,page);
+            model = postService.dividePage(model,posts,page);
         model.addAttribute("topPosts",topPosts);
         return "listPosts";
     }
@@ -144,7 +145,12 @@ public class PostController {
             map.put("res","修改置顶失败");
         return map;
     }
-    
+
+    /**
+     * 根据 post_id删除帖子
+     * @param request
+     * @return
+     */
     @RequestMapping("delPost")
     @ResponseBody
     public Map<String,String> delPost(HttpServletRequest request) {
@@ -158,16 +164,23 @@ public class PostController {
         else
             map.put("res","删除失败");
         return map;
-    }  
-    
-    @RequestMapping("test")
+    }
+
+    @RequestMapping("submitPost")
     @ResponseBody
-    public Map<String,Object> test(HttpServletRequest request, @RequestParam(name = "page",defaultValue = "1") String page) {
-        Map<String,Object> map = new HashMap<>();
-        List<Post> posts = postService.findAllOrderByPostTimeDesc();
-        PageHelper pageHelper = new PageHelper();
-        List<PageInfo> pageInfos = pageHelper.SetStartPage(posts,Integer.parseInt(page),1);
-        map.put("message",pageInfos);
+    public Map<String,String> submitPost(HttpServletRequest request, HttpSession session) {
+        String post_title = request.getParameter("title");
+        User loginUser = (User) session.getAttribute("user");
+        String user_id = loginUser.getUserId();
+        System.out.println(post_title);
+//        Post post = postService.findByPostId(post_id);
+        Map<String,String> map = new HashMap<>();
+        int res;
+//        res = postService.deleteByPostId(post_id);
+//        if(res == 1)
+//            map.put("res","发布成功");
+//        else
+            map.put("res","发布失败");
         return map;
     }
 }

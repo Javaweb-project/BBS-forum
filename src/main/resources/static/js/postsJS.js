@@ -81,7 +81,8 @@ function btnThing() {
 }
 
 /* 动态显示发帖人姓名，设置同步刷新是为了让success可以改变html标签 */
-function setUserName() {
+function setUserName() {/* 选中帖子类型，显示输入积分input */
+
     var names = $(".name");
     for(var i in names) {
         var name = names.eq(i);

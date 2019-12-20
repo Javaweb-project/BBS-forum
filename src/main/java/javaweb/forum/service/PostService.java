@@ -5,13 +5,8 @@ import javaweb.forum.entity.Post;
 import javaweb.forum.pageTool.PageHelper;
 import javaweb.forum.pageTool.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +19,7 @@ public class PostService {
      * 查询所有帖子通过帖子发布时间降序
      * @return
      */
-    public List<Post> findAllOrderByPostTimeDesc() { 
+    public List<Post> findAllOrderByPostTimeDesc() {
         return dao.findAllOrderByPostTimeDesc();
     }
 
@@ -59,7 +54,7 @@ public class PostService {
     }
 
     /**
-     * 查询所有的需求贴，按时间返回 
+     * 查询所有的需求贴，按时间返回
      */
     public List<Post> findAllDemandOrderByPostTimeDesc() {
         return dao.findAllDemandOrderByPostTimeDesc();
@@ -82,7 +77,7 @@ public class PostService {
     public Post findByPostId(String post_id) {
         return dao.findByPostId(post_id);
     }
-    
+
     /**
      * 更新帖子的加精状态
      * @param post_id
@@ -119,7 +114,7 @@ public class PostService {
      * @param page 需要的某一页的内容
      * @return
      */
-    public Model devidePage(Model model,List<Post> posts,String page) {
+    public Model dividePage(Model model,List<Post> posts,String page) {
         PageHelper pageHelper = new PageHelper();
         List<PageInfo> pageInfos = pageHelper.SetStartPage(posts,Integer.parseInt(page),1);
         model.addAttribute("posts",pageInfos.get(0).getList());
@@ -128,5 +123,5 @@ public class PostService {
         model.addAttribute("firstPage",pageInfos.get(0).isFirstPage());
         model.addAttribute("lastPage",pageInfos.get(0).isLastPage());
         return model;
-    } 
+    }
 }

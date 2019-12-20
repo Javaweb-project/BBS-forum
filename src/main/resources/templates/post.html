@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>BBS论坛</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/postCSS.css}" rel="stylesheet"/>
+    <link th:href="@{/css/systemCSS.css}" rel="stylesheet"/>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid top">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">BBS</span>
+            </button>
+            <a class="navbar-brand" href="#">BBS社区</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> 用户名</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">个人中心</a></li>
+                        <li><a href="#">消息中心</a></li>
+                        <li><a href="#">切换账户</a></li>
+                        <li><a href="#">退出</a></li>
+                    </ul>
+                </li>
+                <li><a href="/system">回主页</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+<main id="tt-pageContent">
+    <div class="container">
+        <div class="tt-wrapper-inner">
+            <h1 class="tt-title-border">发布帖子</h1>
+            <!--/*@thymesVar id="post" type="com"*/-->
+            <form class="form-default form-create-to#" method="post">
+                <div class="form-group"><label for="inputTitle">贴子标题</label>
+                    <div class="tt-value-wrapper">
+                        <input type="text" name="name" class="form-control" id="inputTitle">
+                    </div>
+                </div>
+                <div class="form-group"><label>帖子类型</label>
+                    <div class="tt-js-active-btn tt-wrapper-btnicon">
+                        <div class="row tt-w410-col-02">
+                            <div class="col-4 col-lg-3 col-xl-2">
+                                <label for="ordinary">
+                                    <input type="radio" id="ordinary" name="option"/>
+                                    <span class="tt-icon">
+                                        <svg t="1576589606644" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4432" width="200" height="200">
+                                            <path d="M681.68 855.2L502.72 636H140v-512h752v512H792zM196 580h333.28l141.04 172.8 86.8-172.8h78.88v-400h-640zM132 864h768v56h-768z" p-id="4433"></path>
+                                        </svg>
+                                        <span class="tt-text">普通帖</span>
+                                    </span>
+                                </label>
+                            </div>
+
+                            <div class="col-4 col-lg-3 col-xl-2">
+                                <label for="question">
+                                    <input type="radio" id="question" name="option"/>
+                                    <span class="tt-icon">
+                                        <svg t="1576589905715" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5253" width="200" height="200">
+                                            <path d="M831.534545 983.272727A29.090909 29.090909 0 0 1 814.545455 977.454545L582.865455 811.869091H110.312727A87.156364 87.156364 0 0 1 23.272727 724.712727V174.545455a87.156364 87.156364 0 0 1 87.04-87.272728h802.909091A87.156364 87.156364 0 0 1 1000.727273 174.545455v550.167272a87.156364 87.156364 0 0 1-87.04 87.272728H849.454545l11.636364 139.636363a29.090909 29.090909 0 0 1-28.974545 31.418182z m-721.454545-837.818182A28.974545 28.974545 0 0 0 81.454545 174.545455v550.167272a28.974545 28.974545 0 0 0 28.858182 29.090909H592.290909a29.090909 29.090909 0 0 1 16.989091 5.469091l188.276364 134.749091-8.610909-108.916363a29.090909 29.090909 0 0 1 28.974545-31.418182h95.767273A28.974545 28.974545 0 0 0 942.545455 724.712727V174.545455a28.974545 28.974545 0 0 0-28.858182-29.09091z" fill="" p-id="5254"></path>
+                                            <path d="M494.312727 559.941818a29.090909 29.090909 0 0 1-29.090909-29.090909V516.654545a116.363636 116.363636 0 0 1 11.636364-52.363636 197.818182 197.818182 0 0 1 51.316363-61.789091c15.941818-16.058182 19.316364-19.898182 19.781819-20.48a38.4 38.4 0 0 0 9.309091-23.272727 40.029091 40.029091 0 0 0-10.356364-30.487273 46.545455 46.545455 0 0 0-32.930909-9.658182 40.727273 40.727273 0 0 0-36.305455 15.010909 68.072727 68.072727 0 0 0-11.636363 43.403637 29.090909 29.090909 0 0 1-58.181819 0 123.461818 123.461818 0 0 1 24.087273-79.127273 98.210909 98.210909 0 0 1 82.152727-37.469091 101.352727 101.352727 0 0 1 74.705455 27.229091 98.56 98.56 0 0 1 26.763636 70.749091 95.767273 95.767273 0 0 1-22.109091 59.578182 361.658182 361.658182 0 0 1-25.018181 26.298182l-1.512728 1.396363a144.64 144.64 0 0 0-37.934545 43.752728A58.181818 58.181818 0 0 0 523.636364 516.654545v14.196364a29.090909 29.090909 0 0 1-29.323637 29.090909z" fill="" p-id="5255"></path>
+                                            <path d="M494.312727 612.305455m-29.090909 0a29.090909 29.090909 0 1 0 58.181818 0 29.090909 29.090909 0 1 0-58.181818 0Z" fill="" p-id="5256"></path>
+                                        </svg>
+                                        <span class="tt-text">需求贴</span>
+                                        <span>积分：<input type="text" id="inputIntegral" style="width: 80px"></span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-editor">
+                    <h6 class="pt-title">帖子内容</h6>
+                    <div class="form-group"><textarea name="message" class="form-control" rows="5" id="inputContent"></textarea></div>
+                    <div class="row">
+                        <div class="col-auto ml-md-auto"><input class="btn btn-secondary btn-width-lg" onclick="submitPost()" value="发布" /></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+<script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/submitPostJS.js}"></script>
+</body>
+</html>
