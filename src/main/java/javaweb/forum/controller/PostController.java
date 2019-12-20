@@ -162,4 +162,12 @@ public class PostController {
             map.put("res","删除失败");
         return map;
     }
+
+    /**
+     * 发布帖子
+     */
+    @RequestMapping("post")
+    public String post(Model model) {
+        return "post";
+    }
 }

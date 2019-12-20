@@ -1,0 +1,148 @@
+body {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #666f74;
+    text-align: left;
+    background-color: #f8f9fb;
+    font-size: 16px;
+    line-height: 26px;
+}
+
+.form-create-topic.form-default .form-group label:not(.error) {
+    padding-bottom: 22px;
+}
+
+.form-default .form-group label:not(.error) {
+    font-size: 16px;
+    line-height: 26px;
+    font-weight: 600;
+    color: #182730;
+    padding-bottom: 14px;
+    margin-bottom: 0;
+    letter-spacing: 0.01em;
+}
+
+label {
+    display: inline-block;
+    margin-left: 0.5rem;
+}
+
+.col-4 label {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.tt-title-border {
+    border-bottom: 1px solid #e2e7ea;
+    color: #303344;
+    font-size: 18px;
+    line-height: 26px;
+    font-weight: 500;
+    padding: 0 0 23px 0;
+    margin-bottom: 21px;
+    letter-spacing: 0.01em;
+}
+
+.tt-wrapper-btnicon .tt-icon {
+    margin-top: 30px;
+    width: 218px;
+}
+
+.tt-icon:hover,
+.tt-icon.active {
+    border-color: #2172cd;
+}
+
+.tt-wrapper-btnicon {
+    margin-top: -30px;
+}
+
+.tt-wrapper-btnicon {
+    padding-bottom: 5px;
+}
+
+.row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+a:active,
+a:visited,
+a:focus {
+    text-decoration: none;
+}
+
+.col-4 {
+    -ms-flex: 0 0 33.333333%;
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+}
+
+.tt-icon {
+    display: block;
+    text-align: center;
+    background-color: #e2e7ea;
+    border-radius: 3px;
+    border: 2px solid #e2e7ea;
+    display: block;
+    padding-top: 28px;
+    padding-bottom: 19px;
+    -webkit-transition: border 0.2s linear;
+    transition: border 0.2s linear;
+}
+
+.tt-icon svg {
+    max-width: 78px;
+    max-height: 78px;
+    fill: #666e74;
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+.tt-text {
+    color: #182730;
+    display: block;
+    text-align: center;
+    margin-top: 21px;
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: 0.01em;
+}
+
+.ml-md-auto,
+.mx-md-auto {
+    margin-left: auto !important;
+}
+
+.col-auto {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    width: auto;
+    max-width: 100%;
+}
+
+.pt-editor .btn-width-lg {
+    min-width: 160px;
+}
+
+.btn.btn-secondary {
+    background-color: #2172cd;
+    color: #ffffff;
+}
+
+.form-create-topic .btn {
+    margin: 17px;
+}
+
+input[type="radio"] {
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+}
