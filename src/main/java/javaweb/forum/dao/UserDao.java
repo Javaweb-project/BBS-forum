@@ -20,6 +20,6 @@ public interface UserDao extends JpaRepository<User,String> {
 
     @Transactional
     @Modifying
-    @Query(value = "insert into user (user_name,user_password)values (?1, ?2)",nativeQuery = true)
-    int saveUser(String name,String password);
+    @Query(value = "insert into user (user_name,user_password,user_phone,user_workplace,user_job,user_point,user_admin)values (?1, ?2,?3,?4,?5,?6,?7)",nativeQuery = true)
+    int saveUser(String name,String password,String phone,String workplace,String job,int point,int admin);
 }
