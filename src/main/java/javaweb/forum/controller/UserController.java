@@ -37,9 +37,7 @@ public class UserController {
         return response.encodeRedirectURL("/index");
     }
 
-    //真正主页，用户在访问 XXXXX/index就会跳转该方法，
-    // 这个XXXXX是你的域名，自己电脑上的话一般都是127.0.0.1:8080或者是localhost：8080
-    // 8080是端口号，端口号根据tomcat设置而改变，默认值是8080
+    //真正主页，用户在访问 XXXXX/index就会跳转该方法
     @RequestMapping("/index")
     public String home(Model model) {
         //对应到templates文件夹下面的index
@@ -55,7 +53,7 @@ public class UserController {
     //注册用户，使用POST，传输数据
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String registerPost(Model model,
-                               //这里和模板中的th:object="${user}"对应起来
+                               //和模板中的th:object="${user}"对应起来
                                @ModelAttribute(value = "user") User user,
                                HttpServletResponse response) {
         //使用userService处理业务
