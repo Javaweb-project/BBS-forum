@@ -80,6 +80,15 @@ public class PostService {
     }
 
     /**
+     * 根据用户 id 返回帖子
+     * @param user_id
+     * @return
+     */
+    public List<Post> findByUserId(int user_id) {
+        return dao.findByUserId(user_id);
+    }
+    
+    /**
      * 更新帖子的加精状态
      * @param post_id
      * @param high
@@ -143,5 +152,14 @@ public class PostService {
      */
     public int updatePostContent(String post_id , String post_content){
         return dao.updatePostContent(Integer.parseInt(post_id ),post_content);
+    }
+
+    /**
+     * 增加帖子的浏览数
+     * @param post_id
+     * @return
+     */
+    public int updatePostView(String post_id) {
+        return dao.updatePostView(Integer.parseInt(post_id));    
     }
 }

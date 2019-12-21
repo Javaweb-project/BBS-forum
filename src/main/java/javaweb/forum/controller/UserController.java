@@ -8,8 +8,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -56,5 +59,48 @@ public class UserController {
 
         userService.updateByUserId(user_id,user_phone,user_workplace,user_job);
         return "userInfo";
+    }
+
+
+    @RequestMapping("/notVerify")
+    @ResponseBody
+    public String notVerify() {
+        return "notVerify";
+    }
+
+    /**
+     * 用户登录检验 
+     * @param user
+     * @return
+     */
+    @RequestMapping(value = "/userLogin")
+    @ResponseBody
+    public void userLogin(User user, HttpSession session, HttpServletResponse response) throws IOException {
+
+        List<User> currUser = userService.verifyUser(user);
+        if (currUser.size() != 0) {
+            session.setAttribute("user",currUser.get(0));
+            response.sendRedirect("/system");
+        } else {
+            response.sendRedirect("register");
+        }
+    }
+    
+    @RequestMapping("/register")
+    public String register(Model model) {
+        model.addAttribute("user", new User());
+        return "register";
+    }
+
+    @RequestMapping("/registerUser")
+    public String registerUser(User user){
+        user.setUserAdmin(0);
+        user.setUserPoint(10);
+        if (userService.registerUser(user)){
+            return "login";
+        }
+        else{
+            return "notVerify";
+        }
     }
 }

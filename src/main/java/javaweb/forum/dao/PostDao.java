@@ -29,6 +29,9 @@ public interface PostDao extends JpaRepository<Post,String> {
     @Query(value = "select * from post where post_id = ?1",nativeQuery = true)
     Post findByPostId(int post_id);
     
+    @Query(value = "select * from post where user_id = ?1 order by post_time desc",nativeQuery = true)
+    List<Post> findByUserId(int user_id);
+    
     @Transactional
     @Modifying(clearAutomatically = true)
     @Query(value = "update post set post_highlight = ?2 where post_id = ?1",nativeQuery = true)
@@ -53,4 +56,9 @@ public interface PostDao extends JpaRepository<Post,String> {
     @Modifying
     @Query(value = "update post set post_content = ?2 where post_id = ?1",nativeQuery = true)
     int updatePostContent(int post_id , String post_content);
+
+    @Transactional
+    @Modifying
+    @Query(value = "update post set post_view = post_view + 1 where post_id = ?1",nativeQuery = true)
+    int updatePostView(int post_id);
 }

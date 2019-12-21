@@ -200,6 +200,7 @@ public class PostController {
     @RequestMapping("findPostByPostId")
     public String findPostByPostId(Model model,HttpServletRequest request){
         String post_id = request.getParameter("post_id");
+        postService.updatePostView(post_id);
         Post post = postService.findByPostId(post_id);
         model.addAttribute("post",post);
         return "postContent";
@@ -223,5 +224,14 @@ public class PostController {
         else
             map.put("res","更新失败");
         return map;
+    }
+    
+    @RequestMapping("myPosts")
+    public String myPosts(Model model,HttpSession session) {
+        User user = (User)session.getAttribute("user");
+        int user_id = user.getUserId();
+        List<Post> posts = postService.findByUserId(user_id);
+        model.addAttribute("posts",posts);
+        return "myPost";
     }
 }

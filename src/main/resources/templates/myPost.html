@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!-- suppress ThymeleafVariablesResolveInspection --><!-- suppress ThymeleafVariablesResolveInspection -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>帖子列表</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/systemCSS.css}" rel="stylesheet"/>
+</head>
+<body>
+
+<!-- 非置顶部分 -->
+<div class="panel-body" th:if="${posts}">
+    <article class="brief-2" th:each="post:${posts}" th:id="${post.getPostId()}">
+        <div class="row">
+            <div class="col-xs-12 h5">
+                <span class="tag demand-tag" th:if="${post.getPostPoint()}">需求帖</span>
+                <a href="#" class="bigger-5" th:href="@{'/findPostByPostId?post_id='+${post.getPostId()}}" th:text="${post.getPostTitle()}">帖子标题</a>
+                <span class="jinghua-label" title="精华" th:if="${post.getPostHighLight()}">
+                    <span class="glyphicon glyphicon-thumbs-up jinghua-icon"></span>
+                </span>
+                <span class="pull-right smaller-5">
+                    <a href="#" class="name" th:text="${session.user.getUserName()}">发帖人</a>
+                </span>
+            </div>
+            <div class="col-xs-12 h5">
+                <span class="smaller-5" th:text="${post.getPostContent()}"></span>
+                <span class="pull-right smaller-30">
+                    <em>
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                        <!--浏览人数-->
+                        <span style="vertical-align: inherit;" th:text="${post.getPostView()}+'&nbsp'"></span>
+                        <span class="glyphicon glyphicon-bell"></span>
+                        <!--发布时间-->
+                        <span style="vertical-align: inherit;" th:text="${#dates.format(post.getPostTime(),'yyyy-MM-dd HH:mm')}"></span>
+                    </em>
+                </span>
+            </div>
+        </div>
+    </article>
+    <hr/>
+</div>
+<script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>

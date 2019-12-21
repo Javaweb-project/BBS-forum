@@ -5,6 +5,8 @@ import javaweb.forum.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService {
     @Autowired
@@ -40,5 +42,18 @@ public class UserService {
     public int updateByUserId(int user_id, String user_phone, String user_workplace, String user_job){
         return dao.updateByUserId(user_id, user_phone, user_workplace, user_job);
 
+    }
+
+
+    public List<User> verifyUser(User user){
+        return  dao.findByUserNameAndUserPassword(user.getUserName(),user.getUserPassword());
+    }
+    
+    public boolean registerUser(User user) {
+        if (dao.findByUserName(user.getUserName()).isEmpty()) {
+            dao.saveUser(user.getUserName(),user.getUserPassword(),user.getUserPhone(),user.getUserWorkPlace(),user.getUserJob(),user.getUserPoint(),user.getUserAdmin());
+            return true;
+        } else 
+            return false;
     }
 }
