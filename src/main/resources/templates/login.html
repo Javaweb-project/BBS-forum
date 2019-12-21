@@ -4,13 +4,12 @@
     <meta charset="UTF-8">
     <title>登陆</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/bgCSS.css}">
     <script th:src="@{/js/jquery-3.3.1.min.js}"></script>
     <script th:src="@{/js/bootstrap.min.js}"></script>
 </head>
 <body>
-<h1 style="text-align: center">欢迎登陆</h1>
-
-
+<h1 style="text-align: center;margin-top:100px">欢迎登陆</h1>
 <form th:action="@{/user/userLogin}" th:object="${user}" method="post" role="form" >
     <div align="center">
         <label for="username">username:</label>
@@ -18,7 +17,7 @@
         <label for="password">password:</label>
         <input type="password" name="password" id="password" class="form-control" style="width: 500px;" th:field="*{userPassword}"/>
         <div style="width:100%;text-align:center"><input type="submit" value="submit" class="btn btn-primary" >
-            <input type="button" value="register" class="btn btn-primary" href="/user/register">
+
         </div>
     </div>
 </form>

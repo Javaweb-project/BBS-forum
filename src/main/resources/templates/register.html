@@ -13,11 +13,12 @@
     <meta charset="UTF-8">
     <title>注册</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/bgCSS.css}">
     <script th:src="@{/js/jquery-3.3.1.min.js}"></script>
     <script th:src="@{/js/bootstrap.min.js}"></script>
 </head>
 <body>
-<h1 style="text-align: center">注册</h1>
+<h1 style="text-align: center;margin-top:50px;">注册</h1>
 
 
 <form th:action="@{/user/registerUser}" th:object="${user}" method="post" role="form" >
