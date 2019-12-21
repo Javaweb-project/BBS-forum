@@ -7,9 +7,9 @@
     <link th:href="@{/css/systemCSS.css}" rel="stylesheet"/>
 </head>
 <body>
-    <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2" id="allComments" th:value="${post.getPostPoint()}">
+    <div id="allComments" th:value="${post.getPostPoint()}" th:if="${comments}">
         <!--展示本帖子下的所有评论和回复-->
-        <div class="panel panel-default" th:each="comment:${comments}" th:if="${comments}">
+        <div class="panel panel-default" th:each="comment:${comments}">
             <!--评论的头部-->
             <div class="panel-heading">
                 <div class="col-xs-12">
@@ -20,7 +20,7 @@
                         </a>
                         <span class="glyphicon glyphicon-bell"></span>
                         <!--评论发表时间-->
-                        <span class="grayout smaller-30 time" th:text="${comment.getId().getCommentTime().substring(0,comment.getId().getCommentTime().length()-3)}" th:value="${comment.getId().getCommentTime()}">
+                        <span class="grayout smaller-30 time" th:text="${#dates.format(comment.getId().getCommentTime())}" th:value="${comment.getId().getCommentTime()}">
                             评论时间
                         </span>
                         <span class="jinghua-label" title="精华" th:if="${comment.getCommentAccept()}">
@@ -42,7 +42,7 @@
         </div>  
         <!--回复输入框-->
         <h4>提交回复</h4>
-        <div id="reply" th:value="${comments.get(0).getId().getPostId()}">
+        <div id="reply">
             <textarea rows="6" id="content"></textarea>
             <button class="btn btn-success float-right">回复</button>
         </div>

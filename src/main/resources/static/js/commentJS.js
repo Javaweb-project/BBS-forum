@@ -35,8 +35,9 @@ function getFormatDate(){
 /*回复功能*/
 $("#reply button").click(function() {
     var content = $("#content").val();
-    var curtime = getFormatDate();
-    var post_id = $("#reply").attr("value");
+    // var post_id = $("#reply").attr("value");
+    var post_id = $("#showComments").attr("value");
+    console.log(post_id);
     if(content == "")
         alert("回复不能为空");
     else {
@@ -46,14 +47,13 @@ $("#reply button").click(function() {
             data: {
                 post_id: post_id,
                 content: content,
-                time: curtime
             },
             dataType: 'json',
             success: function(data) {
                 var res = data.res;
                 alert(res);
-                if(res == "回复成功") 
-                    location.reload();
+                if(res == "回复成功")
+                    loadCommens();
             }
         })
     }
@@ -68,10 +68,8 @@ function setAccept() {
             var par = $(this).parents(".panel-body");
             var heading = par.eq(0).prev();
             var time = heading.children().children(".font-5").eq(0).children(".time").eq(0).attr("value");
-            var post_id = $("#reply").attr("value");
+            var post_id = $("#showComments").attr("value");
             var user_id = heading.children().children(".font-5").eq(0).children("a").eq(0).children(".user").attr("value");
-            // console.log(user_id);
-            // console.log(time);
             $.ajax({
                 type: 'post',
                 url: '/comment/accept',
@@ -83,10 +81,10 @@ function setAccept() {
                 dataType: 'json',
                 success: function(data) {
                     var res = data.res;
-                    alert(res);
+                    alert(res);            
                     if(res == "采纳成功") {
                         addPoint(user_id);
-                        location.reload();    
+                        loadCommens();    
                     }
                         
                 }

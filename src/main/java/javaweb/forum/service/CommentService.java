@@ -4,6 +4,8 @@ import javaweb.forum.dao.CommentDao;
 import javaweb.forum.entity.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.sql.Timestamp;
 import java.util.List;
 
 @Service
@@ -47,7 +49,7 @@ public class CommentService {
      * @param comment_time
      * @return
      */
-    public int updateAccept(int accept,String post_id,String comment_user_id,String comment_time) {
+    public int updateAccept(int accept, String post_id, String comment_user_id, Timestamp comment_time) {
         return dao.updateAccept(accept,Integer.parseInt(post_id),Integer.parseInt(comment_user_id),comment_time);
     }
 
@@ -58,9 +60,9 @@ public class CommentService {
      */
     public Boolean hasAccept(String post_id) {
         List<Comment> comments = dao.findOneAccepted(Integer.parseInt(post_id));
-        if(comments.size() > 0)
-            return true;
-        else
+        if(comments.size() == 0)
             return false;
+        else
+            return true;
     }
 }

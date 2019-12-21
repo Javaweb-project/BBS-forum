@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Repository
@@ -26,20 +27,30 @@ public interface PostDao extends JpaRepository<Post,String> {
     List<Post> findByTitleLike(String title);
     
     @Query(value = "select * from post where post_id = ?1",nativeQuery = true)
-    Post findByPostId(String post_id);
+    Post findByPostId(int post_id);
     
     @Transactional
     @Modifying(clearAutomatically = true)
     @Query(value = "update post set post_highlight = ?2 where post_id = ?1",nativeQuery = true)
-    int updateHighLight(String post_id,int high);
+    int updateHighLight(int post_id,int high);
 
     @Transactional
     @Modifying(clearAutomatically = true)
     @Query(value = "update post set post_top = ?2 where post_id = ?1",nativeQuery = true)
-    int updateTop(String post_id,int top);
+    int updateTop(int post_id,int top);
 
     @Transactional
     @Modifying
     @Query(value = "delete from post where post_id = ?1",nativeQuery = true)
-    int deleteByPostId(String post_id);
+    int deleteByPostId(int post_id);
+
+    @Transactional
+    @Modifying(clearAutomatically = true)
+    @Query(value = "insert into post (user_id,post_title,post_point,post_content,post_time,post_top,post_highlight,post_view) values (?1,?2,?3,?4,?5,?6,?7,?8);",nativeQuery = true)
+    int saveSubmitPost(int user_id, String post_title, int post_point, String post_content, Timestamp post_time, int post_top, int post_highlight, int post_view);
+
+    @Transactional
+    @Modifying
+    @Query(value = "update post set post_content = ?2 where post_id = ?1",nativeQuery = true)
+    int updatePostContent(int post_id , String post_content);
 }

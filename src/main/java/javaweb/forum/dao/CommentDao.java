@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.sql.Timestamp;
 import java.util.List;
 
 @Repository
@@ -24,10 +26,10 @@ public interface CommentDao extends JpaRepository<Comment,String> {
     @Transactional
     @Modifying
     @Query(value = "insert into comment values(?1,?2,?3,?4,?5)",nativeQuery = true)
-    int insertComment(int post_id,String comment_content,int comment_user_id,String comment_time,int comment_accept);
+    int insertComment(int post_id,String comment_content,int comment_user_id,Timestamp comment_time,int comment_accept);
 
     @Transactional
     @Modifying
     @Query(value = "update comment set comment_accept = ?1 where post_id = ?2 and comment_user_id = ?3 and comment_time = ?4",nativeQuery = true)
-    int updateAccept(int accept,int post_id,int comment_user_id,String comment_time);
+    int updateAccept(int accept, int post_id, int comment_user_id, Timestamp comment_time);
 }

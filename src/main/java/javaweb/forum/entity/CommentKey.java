@@ -3,6 +3,7 @@ package javaweb.forum.entity;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 /**
  * Comment类的复合主键
@@ -16,7 +17,7 @@ public class CommentKey implements Serializable {
     private int commentUserId;
 
     @Column(name = "comment_time")
-    private String commentTime;
+    private Timestamp commentTime;
 
     public int getPostId() {
         return postId;
@@ -34,11 +35,11 @@ public class CommentKey implements Serializable {
         this.commentUserId = commentUserId;
     }
 
-    public String getCommentTime() {
+    public Timestamp getCommentTime() {
         return commentTime;
     }
 
-    public void setCommentTime(String commentTime) {
+    public void setCommentTime(Timestamp commentTime) {
         this.commentTime = commentTime;
     }
 }

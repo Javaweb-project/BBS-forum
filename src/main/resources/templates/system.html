@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>技术宅论坛</title>
+    <title>BBS论坛</title>
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
     <link th:href="@{/css/systemCSS.css}" rel="stylesheet"/>
 </head>
@@ -29,7 +29,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="/post">我要发贴</a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> 用户名</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span><span th:text="${session.user.getUserName()}">用户名</span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">个人中心</a></li>
                             <li><a href="#">退出</a></li>

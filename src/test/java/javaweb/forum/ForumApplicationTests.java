@@ -30,7 +30,11 @@ class ForumApplicationTests {
         // 测试帖子模糊搜索功能
 //        List<Post> posts = postService.findByTitleLike("标题1");
 //        System.out.println(posts.size());
-        System.out.println(commentService.hasAccept("001"));
+//        System.out.println(commentService.hasAccept("001"));
+        //测试查询所有帖子功能
+//        List<Post> posts = postService.findAllOrderByPostTimeDesc();
+//        System.out.println(posts.size());
+                
     }
 
 }

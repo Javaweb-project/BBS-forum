@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,10 +28,10 @@ public class CommentController {
     
     @RequestMapping("findByPostId")
     public String findByPostId(Model model, HttpServletRequest request) {
-//        String post_id = request.getParameter("post_id");
-        List<Comment> comments = commentService.findCommentsByPostId("001");
-        Boolean hasAccept = commentService.hasAccept("001");
-        Post post = postService.findByPostId("001");
+        String post_id = request.getParameter("post_id");
+        List<Comment> comments = commentService.findCommentsByPostId(post_id);
+        Boolean hasAccept = commentService.hasAccept(post_id);
+        Post post = postService.findByPostId(post_id);
         model.addAttribute("comments",comments);
         model.addAttribute("hasAccept",hasAccept);
         model.addAttribute("post",post);
@@ -43,13 +44,12 @@ public class CommentController {
         String post_id = request.getParameter("post_id");
         String content = request.getParameter("content");
         User user = (User)session.getAttribute("user");
-        String user_id = user.getUserId();
-        String time = request.getParameter("time");
+        int user_id = user.getUserId();
         Comment comment = new Comment();
         CommentKey key = new CommentKey();
-        key.setCommentUserId(Integer.parseInt(user_id));
-        key.setCommentTime(time);
-        key.setPostId(Integer.valueOf(post_id));
+        key.setCommentUserId(user_id);
+        key.setCommentTime(new Timestamp(System.currentTimeMillis()));
+        key.setPostId(Integer.parseInt(post_id));
         comment.setId(key);
         comment.setCommentContent(content);
         comment.setCommentAccept(0);
@@ -68,7 +68,7 @@ public class CommentController {
         String post_id = request.getParameter("post_id");
         String user_id = request.getParameter("user_id");
         String time = request.getParameter("time");
-        int res = commentService.updateAccept(1,post_id,user_id,time);
+        int res = commentService.updateAccept(1,post_id,user_id,Timestamp.valueOf(time));
         Map<String,String> map = new HashMap<>();
         if(res == 1)
             map.put("res","采纳成功");

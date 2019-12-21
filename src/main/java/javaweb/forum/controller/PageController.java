@@ -23,5 +23,12 @@ public class PageController {
         session.setAttribute("user",user);
         return "system";
     }
-    
+
+    /**
+     * 发布帖子
+     */
+    @RequestMapping("post")
+    public String post() {
+        return "post";
+    }
 }

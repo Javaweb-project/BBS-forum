@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
@@ -21,7 +20,7 @@ import java.util.Map;
 public class PostController {
     @Autowired
     PostService postService;
-
+    
     /**
      * 按时间返回所有帖子(包含加精帖、需求帖)
      * @param model
@@ -166,6 +165,12 @@ public class PostController {
         return map;
     }
 
+    /**
+     * 发布帖子
+     * @param request
+     * @param session
+     * @return
+     */
     @RequestMapping("submitPost")
     @ResponseBody
     public Map<String,String> submitPost(HttpServletRequest request, HttpSession session) {
@@ -188,10 +193,35 @@ public class PostController {
     }
 
     /**
-     * 发布帖子
+     * 获取指定帖子的所有信息
+     * @param model
+     * @return
+     * */
+    @RequestMapping("findPostByPostId")
+    public String findPostByPostId(Model model,HttpServletRequest request){
+        String post_id = request.getParameter("post_id");
+        Post post = postService.findByPostId(post_id);
+        model.addAttribute("post",post);
+        return "postContent";
+    }
+    
+    /***
+     * 更新帖子的内容
+     * @param
+     * @return
      */
-    @RequestMapping("post")
-    public String post(Model model) {
-        return "post";
+    @RequestMapping("updatePostContent")
+    @ResponseBody
+    public Map<String,String> updatePostContent(HttpServletRequest request){
+        String post_id = request.getParameter("post_id");
+        String post_content = request.getParameter("post_content");
+        Map<String,String> map = new HashMap<>();
+        int res;
+        res = postService.updatePostContent(post_id,post_content);
+        if(res == 1)
+            map.put("res","更新成功");
+        else
+            map.put("res","更新失败");
+        return map;
     }
 }

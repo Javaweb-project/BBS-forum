@@ -16,7 +16,7 @@ public class UserService {
      * @return
      */
     public User findByUserId(String user_id) {
-        return dao.findByUserId(user_id);
+        return dao.findByUserId(Integer.parseInt(user_id));
     }
 
     /**
@@ -26,6 +26,6 @@ public class UserService {
      * @return
      */
     public int addUserPoint(String user_id,int addPoint) {
-        return dao.addUserPoint(user_id,addPoint); 
+        return dao.addUserPoint(Integer.parseInt(user_id),addPoint); 
     }
 }
