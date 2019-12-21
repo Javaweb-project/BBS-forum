@@ -58,7 +58,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "/registerUser", method = RequestMethod.POST)
-    public String registerUser(User user, Model model) {
+    public String registerUser(User user, Model model){
+        user.setUserAdmin(0);
         if (userService.registerUser(user)){
             return "login";
         }
