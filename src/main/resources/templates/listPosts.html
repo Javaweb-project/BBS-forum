@@ -1,20 +1,12 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>帖子列表</title>
-    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
-    <link th:href="@{/css/systemCSS.css}" rel="stylesheet"/>
-</head>
-<body>
 <!--置顶部分，不展示简要内容-->
+<!--本页面在system.html中显示，不可单独在浏览器查看-->
 <div class="panel-body" th:if="${topPosts}">
-    <article class="brief-2" th:each="top:${topPosts}" th:id="${top.getPostId()}">
+    <article class="brief-2" th:each="top:${topPosts}" th:id="${top.getPostId()}" >
         <div class="row">
             <div class="col-xs-12 h5">
                 <span class="tag top-tag">置顶</span>
                 <span class="tag demand-tag" th:if="${top.getPostPoint()}">需求帖</span>
-                <a href="#" class="bigger-5" th:text="${top.getPostTitle()}">帖子标题</a>
+                <a th:href="@{'/findPostByPostId?post_id='+${top.getPostId()}}" class="bigger-5" th:text="${top.getPostTitle()}">帖子标题</a>
                 <span class="jinghua-label" title="精华" th:if="${top.getPostHighLight()}">
                     <span class="glyphicon glyphicon-thumbs-up jinghua-icon"></span>
                 </span>
@@ -27,7 +19,7 @@
                     </span>
                 </span>
                 <span class="pull-right smaller-5">
-                    <a href="#" class="name" th:id="${top.getUserId()}">发帖人</a>
+                    <a href="#" class="user" th:value="${top.getUserId()}">发帖人</a>
                     <div id="test"></div>
                 </span>
             </div>
@@ -38,7 +30,7 @@
 <!-- 非置顶部分 -->
 <div class="panel-body" th:if="${posts}">
     <!--翻页功能-->
-    <div class="row text-center">
+    <div class="row text-center" th:if="${pageNow}">
          <ul class="pagination" role="navigation">
              <li th:class="${firstPage}?'disabled':''" id="pre">
                 <span>&laquo;</span>
@@ -57,11 +49,11 @@
              </li>
          </ul>
     </div>
-    <article class="brief-2" th:each="post:${posts}" th:id="${post.getPostId()}">
+    <article class="brief-2" th:each="post:${posts}" th:id="${post.getPostId()}" >
         <div class="row">
             <div class="col-xs-12 h5">
                 <span class="tag demand-tag" th:if="${post.getPostPoint()}">需求帖</span>
-                <a href="#" class="bigger-5" th:text="${post.getPostTitle()}">帖子标题</a>
+                <a href="#" th:href="@{'/findPostByPostId?post_id='+${post.getPostId()}}" class="bigger-5" th:text="${post.getPostTitle()}">帖子标题</a>
                 <span class="jinghua-label" title="精华" th:if="${post.getPostHighLight()}">
                     <span class="glyphicon glyphicon-thumbs-up jinghua-icon"></span>
                 </span>
@@ -74,7 +66,7 @@
                     </span>
                 </span>
                 <span class="pull-right smaller-5">
-                    <a href="#" class="name" th:id="${post.getUserId()}">发帖人</a>
+                    <a href="#" class="user" th:value="${post.getUserId()}">发帖人</a>
                 </span>
             </div>
             <div class="col-xs-12 h5">
@@ -86,7 +78,7 @@
                         <span style="vertical-align: inherit;" th:text="${post.getPostView()}+'&nbsp'"></span>
                         <span class="glyphicon glyphicon-bell"></span>
                         <!--发布时间-->
-                        <span style="vertical-align: inherit;" th:text="${post.getPostTime().substring(0,post.getPostTime().length()-3)}"></span>
+                        <span style="vertical-align: inherit;" th:text="${#dates.format(post.getPostTime(),'yyyy-MM-dd HH:mm')}"></span>
                     </em>
                 </span>
             </div>
@@ -95,7 +87,4 @@
     <hr/>
 </div>
 <script th:src="@{/js/jquery-3.3.1.min.js}"></script>
-<script th:src="@{/js/bootstrap.min.js}"></script>
 <script th:src="@{/js/postsJS.js}"></script>
-</body>
-</html>

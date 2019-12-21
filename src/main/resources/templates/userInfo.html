@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<!-- suppress ThymeleafVariablesResolveInspection --><!-- suppress ThymeleafVariablesResolveInspection -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>帖子列表</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/systemCSS.css}" rel="stylesheet"/>
+</head>
+<body>
+<div class="panel-body">
+    <div class="row text-center">
+        <form>
+        <p>姓&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp名：<input type="text" id="name" th:value="${session.user.getUserName()}" readonly="true" /></p>
+        <p>电&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp话：<input type="text" id="phone" th:value="${session.user.getUserPhone()}" readonly="true"></p>
+        <p>工作单位：<input type="text" id="workplace" th:value="${session.user.getUserWorkPlace()}" readonly="true"></p>
+        <p>工&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp作：<input type="text" id="job" th:value="${session.user.getUserJob()}" readonly="true"></p>
+        <p>积&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp分：<input type="text" id="point" th:value="${session.user.getUserPoint()}" readonly="true"></p>
+        <p><input id="update" type="button" value="修改信息"></p>
+         <p><input id="submit" type="button" value="提交信息"hidden="true"></p>
+        </form>
+    </div>
+</div>
+<script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/userInfoJs.js}"></script>
+</body>
+</html>

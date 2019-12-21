@@ -5,6 +5,8 @@ import javaweb.forum.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService {
     @Autowired
@@ -16,6 +18,42 @@ public class UserService {
      * @return
      */
     public User findByUserId(String user_id) {
-        return dao.findByUserId(user_id);
+        return dao.findByUserId(Integer.parseInt(user_id));
+    }
+
+    /**
+     * 增加用户的积分
+     * @param user_id
+     * @param addPoint
+     * @return
+     */
+    public int addUserPoint(String user_id,int addPoint) {
+        return dao.addUserPoint(Integer.parseInt(user_id),addPoint); 
+    }
+
+    /**
+     * 更新用户信息
+     * @param user_id
+     * @param user_phone
+     * @param user_workplace
+     * @param user_job
+     * @return
+     */
+    public int updateByUserId(int user_id, String user_phone, String user_workplace, String user_job){
+        return dao.updateByUserId(user_id, user_phone, user_workplace, user_job);
+
+    }
+
+
+    public List<User> verifyUser(User user){
+        return  dao.findByUserNameAndUserPassword(user.getUserName(),user.getUserPassword());
+    }
+    
+    public boolean registerUser(User user) {
+        if (dao.findByUserName(user.getUserName()).isEmpty()) {
+            dao.saveUser(user.getUserName(),user.getUserPassword(),user.getUserPhone(),user.getUserWorkPlace(),user.getUserJob(),user.getUserPoint(),user.getUserAdmin());
+            return true;
+        } else 
+            return false;
     }
 }
