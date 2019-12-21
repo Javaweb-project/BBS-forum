@@ -31,4 +31,13 @@ public class PageController {
     public String post() {
         return "post";
     }
+
+    /**
+     * 个人中心
+     * @return
+     */
+    @RequestMapping("userInfo")
+    public String info() {
+        return "userInfo";
+    }
 }

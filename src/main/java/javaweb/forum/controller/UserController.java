@@ -4,9 +4,11 @@ import javaweb.forum.entity.User;
 import javaweb.forum.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,5 +41,20 @@ public class UserController {
         else
             map.put("res","ID为"+user_id+"的用户增加积分"+point+"失败");
         return map;
+    }
+
+    @RequestMapping("updateUser")
+    public String updateByUserId(HttpServletRequest request,HttpSession session){
+        User user = (User)session.getAttribute("user");
+        int user_id = user.getUserId();
+        /**
+         * 直接从session获得user_id
+         */
+        String user_phone = request.getParameter("user_phone");
+        String user_workplace = request.getParameter("user_workplace");
+        String user_job = request.getParameter("user_job");
+
+        userService.updateByUserId(user_id,user_phone,user_workplace,user_job);
+        return "userInfo";
     }
 }

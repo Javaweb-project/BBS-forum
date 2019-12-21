@@ -28,4 +28,17 @@ public class UserService {
     public int addUserPoint(String user_id,int addPoint) {
         return dao.addUserPoint(Integer.parseInt(user_id),addPoint); 
     }
+
+    /**
+     * 更新用户信息
+     * @param user_id
+     * @param user_phone
+     * @param user_workplace
+     * @param user_job
+     * @return
+     */
+    public int updateByUserId(int user_id, String user_phone, String user_workplace, String user_job){
+        return dao.updateByUserId(user_id, user_phone, user_workplace, user_job);
+
+    }
 }
