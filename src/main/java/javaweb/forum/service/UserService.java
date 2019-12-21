@@ -18,4 +18,23 @@ public class UserService {
     public User findByUserId(String user_id) {
         return dao.findByUserId(user_id);
     }
+
+
+    public boolean verifyUser(User user){
+
+        if(dao.findByUserNameAndUserPassword(user.getUserName(),user.getUserPassword()).isEmpty()){
+            return  false;
+        }
+        else return true;
+    }
+    public boolean registerUser(User user) {
+
+        if (dao.findByUserName(user.getUserName()).isEmpty()) {
+            dao.saveUser(user.getUserName(),user.getUserPassword());
+            return true;
+        } else {
+            return false;
+        }
+
+    }
 }
