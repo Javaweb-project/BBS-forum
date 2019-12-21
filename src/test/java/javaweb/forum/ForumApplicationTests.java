@@ -1,15 +1,12 @@
 package javaweb.forum;
 
-import javaweb.forum.entity.Post;
-import javaweb.forum.pageTool.PageHelper;
-import javaweb.forum.pageTool.PageInfo;
+import javaweb.forum.entity.Comment;
+import javaweb.forum.service.CommentService;
 import javaweb.forum.service.PostService;
 import javaweb.forum.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootTest
@@ -19,10 +16,15 @@ class ForumApplicationTests {
     PostService postService;
     @Autowired
     UserService userService;
+    @Autowired
+    CommentService commentService;
     
     @Test
     void contextLoads() {
-      
+        List<Comment> comments = commentService.findCommentsByPostId("001");
+        comments.forEach(c->{
+            System.out.println(c.getId().getCommentTime());
+        });
     }
 
 }

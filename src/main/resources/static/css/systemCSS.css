@@ -16,9 +16,12 @@ body{
 }
 
 .panel{
-    padding: 5px;
-    margin-bottom: 5px;
+    padding: 0px 5px 0px 5px;
     border-color: #c4c4c4;
+}
+
+.panel-body{
+    padding: 0px;
 }
 
 a{
@@ -101,10 +104,33 @@ hr{
 
 .row{
     margin: 0;
-    padding-left: 0;
-    padding-right: 0;
+    /*padding-left: 0;*/
+    /*padding-right: 0;*/
+    padding: 0;
 }
 
 .text-center{
     text-align: center;
+}
+
+.pagination{
+    margin: 0;
+}
+
+.font-5{
+    font-size: 16px;
+}
+
+.main-text{
+    word-break: break-all;
+    padding-top: 5px;
+}
+
+/*帖子内容超出显示省略号*/
+.post-content{
+    width: 700px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
 }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -162,4 +163,38 @@ public class PostController {
             map.put("res","删除失败");
         return map;
     }
+
+    /**
+    * 获取指定帖子的所有信息
+     * @param model
+     * @return
+    * */
+    @RequestMapping("findPostByPostId")
+    public String findPostByPostId(Model model,@RequestParam(name = "post_id",defaultValue = "001") String post_id,HttpServletRequest request){
+//        String post_id = request.getParameter("post_id");
+        HttpSession session=request.getSession();
+        Post post = postService.findByPostId(post_id);
+        model.addAttribute("post",post);
+        return "postContent";
+    }
+    /***
+     * 更新帖子的内容
+     * @param
+     * @return
+     */
+    @RequestMapping("updatePostContent")
+    @ResponseBody
+    public Map<String,String> updatePostContent(HttpServletRequest request){
+        String post_id = request.getParameter("post_id");
+        String post_content = request.getParameter("post_content");
+        Map<String,String> map = new HashMap<>();
+        int res;
+        res = postService.updatePostContent(post_id,post_content);
+        if(res == 1)
+            map.put("res","更新成功");
+        else
+            map.put("res","更新失败");
+        return map;
+    }
+
 }

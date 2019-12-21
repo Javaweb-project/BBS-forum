@@ -51,4 +51,23 @@ public class UserService {
             return "登陆成功";
         }
     }
+
+
+    public boolean verifyUser(User user){
+
+        if(dao.findByUserNameAndUserPassword(user.getUserName(),user.getUserPassword()).isEmpty()){
+            return  false;
+        }
+        else return true;
+    }
+    public boolean registerUser(User user) {
+
+        if (dao.findByUserName(user.getUserName()).isEmpty()) {
+            dao.saveUser(user.getUserName(),user.getUserPassword());
+            return true;
+        } else {
+            return false;
+        }
+
+    }
 }

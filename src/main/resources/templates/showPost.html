@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>帖子展示页面(只有评论部分)</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/systemCSS.css}" rel="stylesheet"/>
+</head>
+<body>
+    <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2" th:fragment="comment_refresh">
+        <!--展示本帖子下的所有评论和回复-->
+        <div class="panel panel-default" th:each="comment:${comments}">
+            <!--评论的头部-->
+            <div class="panel-heading">
+                <div class="col-xs-12">
+                <span class="font-5">
+                    <!--跳转到用户个人中心的链接-->
+                    <a href="javascript:void(0)">
+                        <span class="maintitle title-5 title" >评论用户名</span>
+                    </a>
+                    <span class="glyphicon glyphicon-bell"></span>
+                    <!--评论发表时间-->
+                    <span class="grayout smaller-30" th:text="${comment.getCommentTime()}">
+                        评论时间
+                    </span>
+                </span>
+                </div>
+            </div>
+            <!--评论内容-->
+            <div class="panel-body">
+                <div class="main-text" th:text="comment.getCommentContent()">
+                    评论内容
+                </div>                   
+            </div>
+        </div>    
+    </div>
+</body>
+</html>
